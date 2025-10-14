@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-solar-dark text-solar-light font-sans;
+  }
+
+  * {
+    @apply border-solar-gray;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-solar-orange text-white px-6 py-3 rounded-md uppercase font-medium tracking-wider transition-all duration-300 hover:shadow-lg hover:shadow-solar-orange/25 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-solar-orange focus:ring-offset-2 focus:ring-offset-solar-dark;
+  }
+
+  .btn-secondary {
+    @apply border border-solar-orange text-solar-orange px-6 py-3 rounded-md uppercase font-medium tracking-wider transition-all duration-300 hover:bg-solar-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-solar-orange focus:ring-offset-2 focus:ring-offset-solar-dark;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-102 hover:shadow-2xl hover:shadow-solar-orange/10;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-solar-orange to-yellow-400 bg-clip-text text-transparent;
+  }
+
+  .glow-effect {
+    @apply shadow-lg shadow-solar-orange/20;
+  }
+}
+
+@layer utilities {
+  .scale-102 {
+    transform: scale(1.02);
+  }
+}
