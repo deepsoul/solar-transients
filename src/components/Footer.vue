@@ -147,9 +147,10 @@ async function handleNewsletterSignup() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: email.value,
+          email_address: email.value,
           tags: ['website-signup'],
           notes: 'Subscribed via solar-transients.de footer',
+          referrer_url: 'https://solar-transients.de',
         }),
       },
     );
@@ -158,7 +159,11 @@ async function handleNewsletterSignup() {
       email.value = '';
       alert('🎉 Thank you for subscribing to our newsletter!');
     } else {
-      throw new Error('Subscription failed');
+      const errorData = await response.json();
+      console.error('Buttondown API Error:', errorData);
+      throw new Error(
+        `Subscription failed: ${errorData.detail?.[0]?.msg || 'Unknown error'}`,
+      );
     }
   } catch (error) {
     console.error('Newsletter signup error:', error);
