@@ -6,6 +6,7 @@
     </main>
     <Footer />
     <Player v-if="currentTrack" />
+    <SnackbarContainer />
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import {usePlayerStore} from '@/stores/player';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import Player from '@/components/Player.vue';
+import SnackbarContainer from '@/components/SnackbarContainer.vue';
 
 const playerStore = usePlayerStore();
 const currentTrack = computed(() => playerStore.currentTrack);

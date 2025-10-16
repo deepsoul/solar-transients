@@ -111,6 +111,7 @@
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
 import {useMusicStore} from '@/stores/music';
+import {useSnackbar} from '@/stores/snackbar';
 import VisualLoop from '@/components/VisualLoop.vue';
 import ReleaseCard from '@/components/ReleaseCard.vue';
 
@@ -118,6 +119,7 @@ const musicStore = useMusicStore();
 const email = ref('');
 const isSubmitting = ref(false);
 const featuredRelease = ref(musicStore.featuredRelease);
+const {success, error: showError} = useSnackbar();
 
 onMounted(() => {
   // Set page title and meta
@@ -131,10 +133,10 @@ async function handleNewsletterSignup() {
     console.log('Newsletter signup:', email.value);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     email.value = '';
-    alert('Thank you for subscribing!');
+    success('Newsletter', 'Thank you for subscribing!');
   } catch (error) {
     console.error('Newsletter signup error:', error);
-    alert('Something went wrong. Please try again.');
+    showError('Newsletter', 'Something went wrong. Please try again.');
   } finally {
     isSubmitting.value = false;
   }

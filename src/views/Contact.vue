@@ -255,6 +255,7 @@
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
 import type {ContactForm} from '@/types';
+import {useSnackbar} from '@/stores/snackbar';
 
 const form = ref<ContactForm>({
   name: '',
@@ -265,6 +266,7 @@ const form = ref<ContactForm>({
 });
 
 const isSubmitting = ref(false);
+const {success, error: showError} = useSnackbar();
 
 async function handleSubmit() {
   isSubmitting.value = true;
@@ -292,13 +294,17 @@ async function handleSubmit() {
         type: 'general',
       };
 
-      alert("Thank you for your message! I'll get back to you soon.");
+      success(
+        'Contact',
+        "Thank you for your message! I'll get back to you soon.",
+      );
     } else {
       throw new Error(result.message || 'Form submission failed');
     }
   } catch (error) {
     console.error('Form submission error:', error);
-    alert(
+    showError(
+      'Contact',
       'Something went wrong. Please try again or contact us directly at hello@solar-transients.com',
     );
   } finally {

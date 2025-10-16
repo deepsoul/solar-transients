@@ -5,6 +5,7 @@ export interface Release {
   coverUrl: string;
   spotifyUrl: string;
   appleUrl: string;
+  tidalUrl: string;
   previewUrl: string;
   description: string;
   tags: string[];
@@ -18,6 +19,8 @@ export interface Track {
   duration: number;
   previewUrl: string;
   spotifyUrl: string;
+  appleUrl: string;
+  tidalUrl: string;
   coverUrl: string;
 }
 

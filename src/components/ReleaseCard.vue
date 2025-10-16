@@ -146,6 +146,47 @@
             </div>
           </button>
         </div>
+
+        <!-- Tidal Button -->
+        <div class="relative group flex-1">
+          <a
+            v-if="release.tidalUrl"
+            :href="release.tidalUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full bg-solar-orange/20 text-solar-orange text-center py-2 px-3 rounded-md text-sm font-medium hover:bg-solar-orange/30 transition-colors duration-300 flex items-center justify-center space-x-1"
+            aria-label="Listen on Tidal"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm0 1.2c-4.642 0-8.4 3.758-8.4 8.4s3.758 8.4 8.4 8.4 8.4-3.758 8.4-8.4-3.758-8.4-8.4-8.4zm0 1.2c3.978 0 7.2 3.222 7.2 7.2s-3.222 7.2-7.2 7.2S4.8 15.978 4.8 12 8.022 4.8 12 4.8zm0 1.2c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 1.2c2.651 0 4.8 2.149 4.8 4.8s-2.149 4.8-4.8 4.8S7.2 14.651 7.2 12 9.349 7.2 12 7.2zm0 1.2c-1.988 0-3.6 1.612-3.6 3.6s1.612 3.6 3.6 3.6 3.6-1.612 3.6-3.6-1.612-3.6-3.6-3.6zm0 1.2c1.325 0 2.4 1.075 2.4 2.4s-1.075 2.4-2.4 2.4S9.6 13.325 9.6 12s1.075-2.4 2.4-2.4z"
+              />
+            </svg>
+            <span>Tidal</span>
+          </a>
+          <button
+            v-else
+            disabled
+            class="w-full bg-solar-orange/30 text-solar-orange/50 text-center py-2 px-3 rounded-md text-sm font-medium cursor-not-allowed flex items-center justify-center space-x-1"
+            aria-label="Tidal - Coming Soon"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm0 1.2c-4.642 0-8.4 3.758-8.4 8.4s3.758 8.4 8.4 8.4 8.4-3.758 8.4-8.4-3.758-8.4-8.4-8.4zm0 1.2c3.978 0 7.2 3.222 7.2 7.2s-3.222 7.2-7.2 7.2S4.8 15.978 4.8 12 8.022 4.8 12 4.8zm0 1.2c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 1.2c2.651 0 4.8 2.149 4.8 4.8s-2.149 4.8-4.8 4.8S7.2 14.651 7.2 12 9.349 7.2 12 7.2zm0 1.2c-1.988 0-3.6 1.612-3.6 3.6s1.612 3.6 3.6 3.6 3.6-1.612 3.6-3.6-1.612-3.6-3.6-3.6zm0 1.2c1.325 0 2.4 1.075 2.4 2.4s-1.075 2.4-2.4 2.4S9.6 13.325 9.6 12s1.075-2.4 2.4-2.4z"
+              />
+            </svg>
+            <span>Tidal</span>
+            <!-- Coming Soon Tooltip -->
+            <div
+              class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-solar-dark text-solar-orange text-xs font-medium rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-50"
+            >
+              Coming Soon
+              <div
+                class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-solar-dark"
+              ></div>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   </div>

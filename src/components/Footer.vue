@@ -63,8 +63,13 @@
           <h4
             class="text-solar-orange font-semibold uppercase tracking-wider text-sm mb-4"
           >
-            Stay Updated
+            Stay Connected
           </h4>
+
+          <p class="text-solar-light/70 mb-8 max-w-2xl mx-auto">
+            Get the latest updates on new releases, upcoming shows, and
+            exclusive content
+          </p>
           <form @submit.prevent="handleNewsletterSignup" class="flex gap-2">
             <input
               v-model="email"
@@ -98,10 +103,12 @@
 
 <script setup lang="ts">
 import {ref} from 'vue';
+import {useSnackbar} from '@/stores/snackbar';
 
 const email = ref('');
 const isSubmitting = ref(false);
 const currentYear = new Date().getFullYear();
+const {success, error: showError} = useSnackbar();
 
 const quickLinks = [
   {name: 'Home', path: '/'},
@@ -125,6 +132,11 @@ const socialLinks = [
     platform: 'SoundCloud',
     url: 'https://soundcloud.com/solar-transients',
     icon: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 8.16c-.169 0-.315.146-.315.315v7.05c0 .169.146.315.315.315s.315-.146.315-.315v-7.05c0-.169-.146-.315-.315-.315zm-1.26 0c-.169 0-.315.146-.315.315v7.05c0 .169.146.315.315.315s.315-.146.315-.315v-7.05c0-.169-.146-.315-.315-.315zm-1.26 0c-.169 0-.315.146-.315.315v7.05c0 .169.146.315.315.315s.315-.146.315-.315v-7.05c0-.169-.146-.315-.315-.315zm-1.26 0c-.169 0-.315.146-.315.315v7.05c0 .169.146.315.315.315s.315-.146.315-.315v-7.05c0-.169-.146-.315-.315-.315zm-1.26 0c-.169 0-.315.146-.315.315v7.05c0 .169.146.315.315.315s.315-.146.315-.315v-7.05c0-.169-.146-.315-.315-.315zm-1.26 0c-.169 0-.315.146-.315.315v7.05c0 .169.146.315.315.315s.315-.146.315-.315v-7.05c0-.169-.146-.315-.315-.315zm-1.26 0c-.169 0-.315.146-.315.315v7.05c0 .169.146.315.315.315s.315-.146.315-.315v-7.05c0-.169-.146-.315-.315-.315zm-1.26 0c-.169 0-.315.146-.315.315v7.05c0 .169.146.315.315.315s.315-.146.315-.315v-7.05c0-.169-.146-.315-.315-.315z',
+  },
+  {
+    platform: 'Tidal',
+    url: 'https://tidal.com/browse/artist/12345678',
+    icon: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm0 1.2c-4.642 0-8.4 3.758-8.4 8.4s3.758 8.4 8.4 8.4 8.4-3.758 8.4-8.4-3.758-8.4-8.4-8.4zm0 1.2c3.978 0 7.2 3.222 7.2 7.2s-3.222 7.2-7.2 7.2S4.8 15.978 4.8 12 8.022 4.8 12 4.8zm0 1.2c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 1.2c2.651 0 4.8 2.149 4.8 4.8s-2.149 4.8-4.8 4.8S7.2 14.651 7.2 12 9.349 7.2 12 7.2zm0 1.2c-1.988 0-3.6 1.612-3.6 3.6s1.612 3.6 3.6 3.6 3.6-1.612 3.6-3.6-1.612-3.6-3.6-3.6zm0 1.2c1.325 0 2.4 1.075 2.4 2.4s-1.075 2.4-2.4 2.4S9.6 13.325 9.6 12s1.075-2.4 2.4-2.4z',
   },
 ];
 
@@ -157,7 +169,7 @@ async function handleNewsletterSignup() {
 
     if (response.ok) {
       email.value = '';
-      alert('🎉 Thank you for subscribing to our newsletter!');
+      success('Newsletter', '🎉 Thank you for subscribing to our newsletter!');
     } else {
       const errorData = await response.json();
       console.error('Buttondown API Error:', errorData);
@@ -185,10 +197,16 @@ async function handleNewsletterSignup() {
       });
 
       email.value = '';
-      alert("✅ Thank you! We'll add you to our newsletter soon.");
+      success(
+        'Newsletter',
+        "✅ Thank you! We'll add you to our newsletter soon.",
+      );
     } catch (fallbackError) {
       console.error('Fallback error:', fallbackError);
-      alert('❌ Something went wrong. Please try again later.');
+      showError(
+        'Newsletter',
+        '❌ Something went wrong. Please try again later.',
+      );
     }
   } finally {
     isSubmitting.value = false;

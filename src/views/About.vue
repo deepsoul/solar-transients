@@ -55,7 +55,7 @@
                 >
                   <div class="text-center">
                     <div
-                      class="w-32 h-32 bg-solar-orange/30 rounded-full mx-auto mb-4 flex items-center justify-center"
+                      class="w-64 h-64 bg-solar-orange/30 rounded-full mx-auto mb-4 flex items-center justify-center"
                     >
                       <img
                         src="/images/artist-photo.jpeg"
@@ -323,12 +323,14 @@
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
 import type {SocialLink} from '@/types';
+import {useSnackbar} from '@/stores/snackbar';
 
 // Dialog state
 const showDownloadDialog = ref(false);
 const dialogType = ref('photos'); // 'photos', 'bio', 'presskit'
 const email = ref('');
 const isSubmitting = ref(false);
+const {success, error: showError} = useSnackbar();
 
 const socialLinks: SocialLink[] = [
   {
@@ -350,6 +352,11 @@ const socialLinks: SocialLink[] = [
     platform: 'YouTube',
     url: 'https://youtube.com/@solar-transients',
     icon: 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z',
+  },
+  {
+    platform: 'Tidal',
+    url: 'https://tidal.com/browse/artist/12345678',
+    icon: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm0 1.2c-4.642 0-8.4 3.758-8.4 8.4s3.758 8.4 8.4 8.4 8.4-3.758 8.4-8.4-3.758-8.4-8.4-8.4zm0 1.2c3.978 0 7.2 3.222 7.2 7.2s-3.222 7.2-7.2 7.2S4.8 15.978 4.8 12 8.022 4.8 12 4.8zm0 1.2c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 1.2c2.651 0 4.8 2.149 4.8 4.8s-2.149 4.8-4.8 4.8S7.2 14.651 7.2 12 9.349 7.2 12 7.2zm0 1.2c-1.988 0-3.6 1.612-3.6 3.6s1.612 3.6 3.6 3.6 3.6-1.612 3.6-3.6-1.612-3.6-3.6-3.6zm0 1.2c1.325 0 2.4 1.075 2.4 2.4s-1.075 2.4-2.4 2.4S9.6 13.325 9.6 12s1.075-2.4 2.4-2.4z',
   },
 ];
 
@@ -407,13 +414,14 @@ async function handleNewsletterSignup() {
     email.value = '';
 
     const contentType = getDialogTitle().toLowerCase();
-    alert(
+    success(
+      'Newsletter',
       `Thank you for subscribing! You'll be notified when ${contentType} are available.`,
     );
     closeDownloadDialog();
   } catch (error) {
     console.error('Newsletter signup error:', error);
-    alert('Something went wrong. Please try again.');
+    showError('Newsletter', 'Something went wrong. Please try again.');
   } finally {
     isSubmitting.value = false;
   }
