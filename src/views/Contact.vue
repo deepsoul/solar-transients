@@ -269,26 +269,38 @@ const isSubmitting = ref(false);
 async function handleSubmit() {
   isSubmitting.value = true;
   try {
-    // Here you would integrate with your form handling service
-    // For now, we'll just simulate a submission
-    console.log('Form submission:', form.value);
+    const response = await fetch(
+      'https://cms.borishorn.de/solar-transients-contact.php',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form.value),
+      },
+    );
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const result = await response.json();
 
-    // Reset form
-    form.value = {
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-      type: 'general',
-    };
+    if (result.success) {
+      // Reset form
+      form.value = {
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        type: 'general',
+      };
 
-    alert("Thank you for your message! I'll get back to you soon.");
+      alert("Thank you for your message! I'll get back to you soon.");
+    } else {
+      throw new Error(result.message || 'Form submission failed');
+    }
   } catch (error) {
     console.error('Form submission error:', error);
-    alert('Something went wrong. Please try again.');
+    alert(
+      'Something went wrong. Please try again or contact us directly at hello@solar-transients.com',
+    );
   } finally {
     isSubmitting.value = false;
   }

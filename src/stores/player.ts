@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia';
-import {ref, computed} from 'vue';
+import {ref, computed, watch} from 'vue';
 import type {Track} from '@/types';
 
 export const usePlayerStore = defineStore('player', () => {
@@ -10,28 +10,102 @@ export const usePlayerStore = defineStore('player', () => {
   const volume = ref(0.8);
   const playlist = ref<Track[]>([]);
   const currentIndex = ref(0);
+  const audioElement = ref<HTMLAudioElement | null>(null);
+  const isLoading = ref(false);
+  const hasError = ref(false);
 
   const hasNext = computed(
     () => currentIndex.value < playlist.value.length - 1,
   );
   const hasPrevious = computed(() => currentIndex.value > 0);
 
+  // Initialize audio element
+  function initAudio() {
+    if (!audioElement.value) {
+      audioElement.value = new Audio();
+      setupAudioEventListeners();
+    }
+  }
+
+  function setupAudioEventListeners() {
+    if (!audioElement.value) return;
+
+    audioElement.value.addEventListener('loadedmetadata', () => {
+      duration.value = audioElement.value?.duration || 0;
+      isLoading.value = false;
+    });
+
+    audioElement.value.addEventListener('timeupdate', () => {
+      currentTime.value = audioElement.value?.currentTime || 0;
+    });
+
+    audioElement.value.addEventListener('ended', () => {
+      isPlaying.value = false;
+      currentTime.value = 0;
+      // Auto-play next track if available
+      if (hasNext.value) {
+        next();
+      }
+    });
+
+    audioElement.value.addEventListener('error', () => {
+      hasError.value = true;
+      isLoading.value = false;
+      isPlaying.value = false;
+    });
+
+    audioElement.value.addEventListener('loadstart', () => {
+      isLoading.value = true;
+      hasError.value = false;
+    });
+
+    audioElement.value.addEventListener('canplay', () => {
+      isLoading.value = false;
+    });
+  }
+
   function setTrack(track: Track) {
     currentTrack.value = track;
     isPlaying.value = false;
     currentTime.value = 0;
+    hasError.value = false;
+
+    if (track.previewUrl) {
+      initAudio();
+      if (audioElement.value) {
+        audioElement.value.src = track.previewUrl;
+        audioElement.value.load();
+      }
+    }
   }
 
   function play() {
-    isPlaying.value = true;
+    if (audioElement.value && currentTrack.value?.previewUrl) {
+      audioElement.value
+        .play()
+        .then(() => {
+          isPlaying.value = true;
+        })
+        .catch((error) => {
+          console.error('Error playing audio:', error);
+          hasError.value = true;
+        });
+    }
   }
 
   function pause() {
-    isPlaying.value = false;
+    if (audioElement.value) {
+      audioElement.value.pause();
+      isPlaying.value = false;
+    }
   }
 
   function togglePlay() {
-    isPlaying.value = !isPlaying.value;
+    if (isPlaying.value) {
+      pause();
+    } else {
+      play();
+    }
   }
 
   function next() {
@@ -64,6 +138,41 @@ export const usePlayerStore = defineStore('player', () => {
 
   function setVolume(vol: number) {
     volume.value = Math.max(0, Math.min(1, vol));
+    if (audioElement.value) {
+      audioElement.value.volume = volume.value;
+    }
+  }
+
+  function seekTo(time: number) {
+    if (audioElement.value) {
+      audioElement.value.currentTime = time;
+      currentTime.value = time;
+    }
+  }
+
+  function stop() {
+    if (audioElement.value) {
+      audioElement.value.pause();
+      audioElement.value.currentTime = 0;
+    }
+    isPlaying.value = false;
+    currentTime.value = 0;
+  }
+
+  // Watch volume changes
+  watch(volume, (newVolume) => {
+    if (audioElement.value) {
+      audioElement.value.volume = newVolume;
+    }
+  });
+
+  // Cleanup on unmount
+  function cleanup() {
+    if (audioElement.value) {
+      audioElement.value.pause();
+      audioElement.value.src = '';
+      audioElement.value = null;
+    }
   }
 
   return {
@@ -76,6 +185,8 @@ export const usePlayerStore = defineStore('player', () => {
     currentIndex,
     hasNext,
     hasPrevious,
+    isLoading,
+    hasError,
     setTrack,
     play,
     pause,
@@ -86,5 +197,8 @@ export const usePlayerStore = defineStore('player', () => {
     setCurrentTime,
     setDuration,
     setVolume,
+    seekTo,
+    stop,
+    cleanup,
   };
 });

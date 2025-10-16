@@ -1,0 +1,100 @@
+<svg width="1000" height="1000" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="voidGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0A0A;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#1A1A2E;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#16213E;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#0F3460;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0A0A0A;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="consciousnessGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color:#DDA0DD;stop-opacity:0.8" />
+      <stop offset="30%" style="stop-color:#87CEEB;stop-opacity:0.6" />
+      <stop offset="60%" style="stop-color:#FF6B35;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0" />
+    </radialGradient>
+    
+    <filter id="etherealGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="1000" fill="url(#voidGradient)"/>
+  
+  <!-- Floating consciousness particles -->
+  <g opacity="0.6">
+    <circle cx="200" cy="150" r="2" fill="#DDA0DD"/>
+    <circle cx="800" cy="200" r="1.5" fill="#87CEEB"/>
+    <circle cx="150" cy="400" r="2.5" fill="#FF6B35"/>
+    <circle cx="850" cy="350" r="1" fill="#DDA0DD"/>
+    <circle cx="300" cy="600" r="2" fill="#87CEEB"/>
+    <circle cx="700" cy="650" r="1.8" fill="#FF6B35"/>
+    <circle cx="100" cy="750" r="1.5" fill="#DDA0DD"/>
+    <circle cx="900" cy="800" r="2.2" fill="#87CEEB"/>
+    <circle cx="500" cy="100" r="1" fill="#FF6B35"/>
+    <circle cx="600" cy="900" r="1.7" fill="#DDA0DD"/>
+  </g>
+  
+  <!-- Central consciousness field -->
+  <g transform="translate(500, 500)">
+    <!-- Outer energy field -->
+    <circle cx="0" cy="0" r="200" fill="url(#consciousnessGlow)" opacity="0.3"/>
+    
+    <!-- Consciousness layers -->
+    <circle cx="0" cy="0" r="160" fill="none" stroke="#DDA0DD" stroke-width="2" opacity="0.5"/>
+    <circle cx="0" cy="0" r="120" fill="none" stroke="#87CEEB" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#FF6B35" stroke-width="1" opacity="0.7"/>
+    
+    <!-- Central consciousness core -->
+    <circle cx="0" cy="0" r="60" fill="#DDA0DD" opacity="0.8"/>
+    <circle cx="0" cy="0" r="40" fill="#87CEEB" opacity="0.9"/>
+    <circle cx="0" cy="0" r="20" fill="#FF6B35" opacity="1"/>
+    
+    <!-- Consciousness connections -->
+    <g stroke="#DDA0DD" stroke-width="1" opacity="0.4">
+      <line x1="-200" y1="0" x2="-120" y2="0"/>
+      <line x1="120" y1="0" x2="200" y2="0"/>
+      <line x1="0" y1="-200" x2="0" y2="-120"/>
+      <line x1="0" y1="120" x2="0" y2="200"/>
+      <line x1="-141" y1="-141" x2="-85" y2="-85"/>
+      <line x1="141" y1="141" x2="85" y2="85"/>
+      <line x1="141" y1="-141" x2="85" y2="-85"/>
+      <line x1="-141" y1="141" x2="-85" y2="85"/>
+    </g>
+    
+    <!-- Energy pulses -->
+    <g stroke="#FF6B35" stroke-width="3" stroke-linecap="round" opacity="0.6">
+      <line x1="-100" y1="-50" x2="-150" y2="-75"/>
+      <line x1="100" y1="-50" x2="150" y2="-75"/>
+      <line x1="-100" y1="50" x2="-150" y2="75"/>
+      <line x1="100" y1="50" x2="150" y2="75"/>
+      <line x1="-50" y1="-100" x2="-75" y2="-150"/>
+      <line x1="-50" y1="100" x2="-75" y2="150"/>
+      <line x1="50" y1="-100" x2="75" y2="-150"/>
+      <line x1="50" y1="100" x2="75" y2="150"/>
+    </g>
+  </g>
+  
+  <!-- Consciousness waves -->
+  <g stroke="#DDA0DD" stroke-width="1" fill="none" opacity="0.3">
+    <ellipse cx="500" cy="500" rx="300" ry="100" transform="rotate(20 500 500)"/>
+    <ellipse cx="500" cy="500" rx="250" ry="80" transform="rotate(-15 500 500)"/>
+    <ellipse cx="500" cy="500" rx="350" ry="120" transform="rotate(60 500 500)"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="500" y="850" text-anchor="middle" fill="#DDA0DD" font-family="Space Grotesk, sans-serif" font-size="48" font-weight="700" filter="url(#etherealGlow)">
+    TRANSIENT STATES
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="500" y="900" text-anchor="middle" fill="#F5F5F5" font-family="Inter, sans-serif" font-size="18" font-weight="300" opacity="0.8">
+    SOLAR TRANSIENTS
+  </text>
+</svg>

@@ -1,222 +1,184 @@
-# SOLAR TRANSIENTS - Artist Portfolio
+# 🌟 SOLAR TRANSIENTS - Artist Portfolio
 
-A sleek, responsive artist portfolio for SOLAR TRANSIENTS built with Vue 3, Vite, and Tailwind CSS. Features Spotify integration, audiovisual hero section, and modern design aesthetics.
+Ein modernes, responsives Artist-Portfolio für SOLAR TRANSIENTS, erstellt mit Vue 3, Vite und Tailwind CSS.
 
 ## 🚀 Features
 
-- **Modern Tech Stack**: Vue 3 with Composition API, Vite, TypeScript
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Music Integration**: Spotify player, preview audio, release management
-- **Visual Effects**: Canvas-based particle system in hero section
-- **SEO Optimized**: Dynamic meta tags, Open Graph support
-- **Accessibility**: Keyboard navigation, ARIA labels, screen reader support
-- **State Management**: Pinia for global state
-- **Deployment Ready**: Configured for Vercel deployment
+- **Responsive Design** - Mobile-first mit Desktop-Optimierungen
+- **Music Player** - HTML5 Audio mit Playlist-Funktionalität
+- **Newsletter Integration** - Buttondown API für kostenlose Newsletter-Verwaltung
+- **Contact Form** - PHP-Backend mit HTML-E-Mail-Versand
+- **SEO-Ready** - Meta Tags, Open Graph, Twitter Cards
+- **Accessibility** - Keyboard Navigation, ARIA Labels
+- **Modern UI** - Solar Orange Design mit Partikel-Animationen
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Vue 3 (Composition API) + Vite
+- **Styling:** Tailwind CSS
+- **State Management:** Pinia
+- **Routing:** Vue Router
+- **TypeScript:** Für bessere Entwicklererfahrung
+- **Deployment:** Vercel
+
+## 📦 Installation
+
+```bash
+# Dependencies installieren
+npm install
+
+# Entwicklungsserver starten
+npm run dev
+
+# Production Build
+npm run build
+
+# Build Preview
+npm run preview
+```
+
+## ⚙️ Environment Variables
+
+Erstelle eine `.env.local` Datei:
+
+```env
+# Newsletter Service (Buttondown)
+VITE_BUTTONDOWN_API_KEY=dein_buttondown_api_key
+
+# Contact Form
+VITE_CONTACT_API_URL=https://cms.borishorn.de/solar-transients-contact.php
+
+# Site Configuration
+VITE_SITE_URL=https://solar-transients.vercel.app
+VITE_SITE_NAME=SOLAR TRANSIENTS
+```
+
+## 📧 Newsletter Setup
+
+### Buttondown Account erstellen:
+
+1. Gehe zu [buttondown.email](https://buttondown.email)
+2. Erstelle kostenlosen Account
+3. Gehe zu Settings → API Keys
+4. Kopiere deinen API Key
+5. Füge ihn in `.env.local` ein
+
+### Features:
+
+- **Kostenlos:** Unbegrenzte Kontakte
+- **Automatische Anmeldung** über Website
+- **Fallback-System** über PHP-Script
+- **Tags:** `website-signup` für Organisation
+
+## 📞 Contact Form Setup
+
+Das Contact Form nutzt ein PHP-Script auf `cms.borishorn.de`:
+
+### PHP-Script Features:
+
+- **CORS-Headers** für Cross-Domain-Requests
+- **HTML-E-Mails** mit Solar Orange Design
+- **Type-spezifische Weiterleitung:**
+  - `general` → `hello@solar-transients.com`
+  - `booking` → `booking@solar-transients.com`
+  - `collaboration` → `hello@solar-transients.com`
+- **Bestätigungs-E-Mails** an Sender
+- **Robuste Fehlerbehandlung**
+
+### Setup:
+
+1. Lade `solar-transients-contact.php` hoch nach `https://cms.borishorn.de/solar-transients-contact.php`
+2. Das Script ist bereits konfiguriert und einsatzbereit
+
+## 🎵 Music Player
+
+- **HTML5 Audio API** für MP3-Wiedergabe
+- **Playlist-Funktionalität** mit Next/Previous
+- **Progress Bar** mit Seek-Funktion
+- **Volume Control**
+- **Loading States** und Error Handling
+- **Spotify/Apple Music Links** (mit "Coming Soon" für leere URLs)
 
 ## 🎨 Design System
 
-- **Colors**: Solar orange (#FF6B35), dark theme with gradient accents
-- **Typography**: Inter (body), Space Grotesk (headings)
-- **Animations**: Smooth transitions, hover effects, particle system
-- **Layout**: Grid-based responsive design
+### Colors:
+
+- **Solar Orange:** `#ff6b35` (Primary)
+- **Solar Dark:** `#0f0f23` (Background)
+- **Solar Gray:** `#1a1a2e` (Secondary)
+- **Solar Light:** `#ffffff` (Text)
+
+### Typography:
+
+- **Headings:** Space Grotesk
+- **Body:** Inter
+
+### Animations:
+
+- **Glow Effects** für Buttons
+- **Particle System** im Hero-Bereich
+- **Hover Transitions** für Cards
+
+## 📱 Pages
+
+- **Home:** Hero mit Visual Loop + Latest Release + Newsletter CTA
+- **Music:** Release Grid mit Filtering
+- **About:** Bio + Press Kit Downloads + Social Links
+- **Contact:** Contact Form + Alternative Contact Methods
+
+## 🚀 Deployment
+
+### Vercel:
+
+1. Push zu GitHub Repository
+2. Verbinde mit Vercel
+3. Füge Environment Variables hinzu:
+   - `VITE_BUTTONDOWN_API_KEY`
+   - `VITE_CONTACT_API_URL`
+4. Deploy!
+
+### Environment Variables für Vercel:
+
+```
+VITE_BUTTONDOWN_API_KEY=deb6e2f1-912d-4f8d-a536-3d350206eb79
+VITE_CONTACT_API_URL=https://cms.borishorn.de/solar-transients-contact.php
+VITE_SITE_URL=https://solar-transients.vercel.app
+VITE_SITE_NAME=SOLAR TRANSIENTS
+```
 
 ## 📁 Project Structure
 
 ```
 src/
-├── components/          # Reusable Vue components
-│   ├── Header.vue      # Navigation header
-│   ├── Footer.vue      # Site footer with social links
-│   ├── Player.vue      # Music player component
-│   ├── ReleaseCard.vue # Music release card
-│   └── VisualLoop.vue  # Hero particle system
-├── views/              # Page components
-│   ├── Home.vue        # Landing page with hero
-│   ├── Music.vue       # Music releases grid
-│   ├── About.vue       # Artist bio and press kit
-│   └── Contact.vue     # Contact form
-├── stores/             # Pinia state management
-│   ├── player.ts       # Music player state
-│   └── music.ts        # Music releases data
-├── types/              # TypeScript type definitions
-└── assets/             # Static assets
+├── components/          # Vue Components
+│   ├── Header.vue      # Navigation
+│   ├── Footer.vue      # Footer mit Newsletter
+│   ├── Player.vue      # Music Player
+│   ├── ReleaseCard.vue # Release Display
+│   └── VisualLoop.vue  # Particle Animation
+├── views/              # Page Components
+│   ├── Home.vue        # Landing Page
+│   ├── Music.vue       # Music Releases
+│   ├── About.vue       # Artist Bio
+│   └── Contact.vue     # Contact Form
+├── stores/             # Pinia Stores
+│   ├── player.ts       # Music Player State
+│   └── music.ts        # Release Data
+├── types/              # TypeScript Types
+└── router/             # Vue Router Config
 ```
 
-## 🛠️ Development
+## 🎯 Next Steps
 
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/your-username/solar-transients.git
-cd solar-transients
-```
-
-2. Install dependencies:
-
-```bash
-npm install
-```
-
-3. Copy environment variables:
-
-```bash
-cp env.example .env.local
-```
-
-4. Update environment variables with your API keys:
-
-```bash
-# Edit .env.local with your actual values
-VITE_SPOTIFY_CLIENT_ID=your_spotify_client_id
-VITE_EMAIL_SERVICE_URL=your_email_service_url
-# ... etc
-```
-
-5. Start development server:
-
-```bash
-npm run dev
-```
-
-### Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run type-check` - Run TypeScript type checking
-
-## 🎵 Music Integration
-
-### Spotify Setup
-
-1. Create a Spotify app at [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
-2. Add your client ID to environment variables
-3. Configure redirect URI for OAuth flow
-4. Update release data in `src/stores/music.ts`
-
-### Adding New Releases
-
-Update the releases array in `src/stores/music.ts`:
-
-```typescript
-{
-  id: 'unique-id',
-  title: 'Release Title',
-  date: '2024-01-15',
-  coverUrl: '/images/cover.jpg',
-  spotifyUrl: 'https://open.spotify.com/album/...',
-  appleUrl: 'https://music.apple.com/album/...',
-  previewUrl: '/audio/preview.mp3',
-  description: 'Release description...',
-  tags: ['ambient', 'electronic'],
-  type: 'EP' // 'Single', 'EP', or 'Album'
-}
-```
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Vercel will automatically detect the Vue.js framework
-4. Add environment variables in Vercel dashboard
-5. Deploy!
-
-### Manual Deployment
-
-1. Build the project:
-
-```bash
-npm run build
-```
-
-2. The `dist` folder contains the production build
-3. Deploy the contents to your hosting provider
-
-### Environment Variables for Production
-
-Set these in your deployment platform:
-
-- `VITE_SPOTIFY_CLIENT_ID` - Spotify API client ID
-- `VITE_EMAIL_SERVICE_URL` - Email service endpoint
-- `VITE_EMAIL_SERVICE_API_KEY` - Email service API key
-- `VITE_NEWSLETTER_SERVICE_URL` - Newsletter service endpoint
-- `VITE_NEWSLETTER_SERVICE_API_KEY` - Newsletter service API key
-- `VITE_SITE_URL` - Your production site URL
-
-## 🎨 Customization
-
-### Colors
-
-Update the color palette in `tailwind.config.js`:
-
-```javascript
-colors: {
-  'solar-orange': '#FF6B35',
-  'solar-dark': '#1A1A1A',
-  // ... add your colors
-}
-```
-
-### Typography
-
-Change fonts in `tailwind.config.js` and update the Google Fonts link in `index.html`.
-
-### Content
-
-- Update artist bio in `src/views/About.vue`
-- Modify release data in `src/stores/music.ts`
-- Customize social links in `src/components/Footer.vue`
-
-## 📱 Responsive Breakpoints
-
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
-
-## ♿ Accessibility Features
-
-- Semantic HTML structure
-- ARIA labels on interactive elements
-- Keyboard navigation support
-- Screen reader friendly
-- High contrast color scheme
-- Focus indicators
-
-## 🔧 Browser Support
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
+1. **Real Assets:** Echte Cover Images und Preview Audio hinzufügen
+2. **Social Media:** Echte Social Media Links konfigurieren
+3. **Analytics:** Google Analytics oder ähnliches hinzufügen
+4. **Testing:** E2E Tests mit Playwright oder Cypress
 
 ## 📄 License
 
-MIT License - see LICENSE file for details
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📞 Support
-
-For questions or support, contact:
-
-- Email: hello@solar-transients.com
-- Website: https://solar-transients.vercel.app
+© 2024 SOLAR TRANSIENTS. All rights reserved.
 
 ---
 
-Built with ❤️ for SOLAR TRANSIENTS
+**Entwickelt mit ❤️ für SOLAR TRANSIENTS**

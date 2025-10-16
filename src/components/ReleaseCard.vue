@@ -67,35 +67,85 @@
 
       <!-- Action Buttons -->
       <div class="flex space-x-2">
-        <a
-          :href="release.spotifyUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex-1 bg-solar-orange text-white text-center py-2 px-3 rounded-md text-sm font-medium hover:bg-solar-orange/80 transition-colors duration-300 flex items-center justify-center space-x-1"
-          aria-label="Listen on Spotify"
-        >
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"
-            />
-          </svg>
-          <span>Spotify</span>
-        </a>
+        <div class="relative group flex-1">
+          <a
+            v-if="release.spotifyUrl"
+            :href="release.spotifyUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-solar-orange text-white text-center py-2 px-3 rounded-md text-sm font-medium hover:bg-solar-orange/80 transition-colors duration-300 flex items-center justify-center space-x-1"
+            aria-label="Listen on Spotify"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"
+              />
+            </svg>
+            <span>Spotify</span>
+          </a>
+          <button
+            v-else
+            disabled
+            class="w-full bg-solar-orange/30 text-solar-light/50 text-center py-2 px-3 rounded-md text-sm font-medium cursor-not-allowed flex items-center justify-center space-x-1"
+            aria-label="Spotify - Coming Soon"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"
+              />
+            </svg>
+            <span>Spotify</span>
+            <!-- Coming Soon Tooltip -->
+            <div
+              class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-solar-dark text-solar-orange text-xs font-medium rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-50"
+            >
+              Coming Soon
+              <div
+                class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-solar-dark"
+              ></div>
+            </div>
+          </button>
+        </div>
 
-        <a
-          :href="release.appleUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex-1 border border-solar-orange text-solar-orange text-center py-2 px-3 rounded-md text-sm font-medium hover:bg-solar-orange hover:text-white transition-colors duration-300 flex items-center justify-center space-x-1"
-          aria-label="Listen on Apple Music"
-        >
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm0 2.4c5.3 0 9.6 4.3 9.6 9.6s-4.3 9.6-9.6 9.6S2.4 17.3 2.4 12 6.7 2.4 12 2.4zm0 1.2c-4.6 0-8.4 3.8-8.4 8.4s3.8 8.4 8.4 8.4 8.4-3.8 8.4-8.4-3.8-8.4-8.4-8.4zm0 1.2c4 0 7.2 3.2 7.2 7.2s-3.2 7.2-7.2 7.2S4.8 16 4.8 12 8 4.8 12 4.8zm0 1.2c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 1.2c2.6 0 4.8 2.2 4.8 4.8s-2.2 4.8-4.8 4.8S7.2 14.6 7.2 12 9.4 7.2 12 7.2z"
-            />
-          </svg>
-          <span>Apple</span>
-        </a>
+        <div class="relative group flex-1">
+          <a
+            v-if="release.appleUrl"
+            :href="release.appleUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border border-solar-orange text-solar-orange text-center py-2 px-3 rounded-md text-sm font-medium hover:bg-solar-orange hover:text-white transition-colors duration-300 flex items-center justify-center space-x-1"
+            aria-label="Listen on Apple Music"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm0 2.4c5.3 0 9.6 4.3 9.6 9.6s-4.3 9.6-9.6 9.6S2.4 17.3 2.4 12 6.7 2.4 12 2.4zm0 1.2c-4.6 0-8.4 3.8-8.4 8.4s3.8 8.4 8.4 8.4 8.4-3.8 8.4-8.4-3.8-8.4-8.4-8.4zm0 1.2c4 0 7.2 3.2 7.2 7.2s-3.2 7.2-7.2 7.2S4.8 16 4.8 12 8 4.8 12 4.8zm0 1.2c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 1.2c2.6 0 4.8 2.2 4.8 4.8s-2.2 4.8-4.8 4.8S7.2 14.6 7.2 12 9.4 7.2 12 7.2z"
+              />
+            </svg>
+            <span>Apple</span>
+          </a>
+          <button
+            v-else
+            disabled
+            class="w-full border border-solar-orange/30 text-solar-orange/30 text-center py-2 px-3 rounded-md text-sm font-medium cursor-not-allowed flex items-center justify-center space-x-1"
+            aria-label="Apple Music - Coming Soon"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm0 2.4c5.3 0 9.6 4.3 9.6 9.6s-4.3 9.6-9.6 9.6S2.4 17.3 2.4 12 6.7 2.4 12 2.4zm0 1.2c-4.6 0-8.4 3.8-8.4 8.4s3.8 8.4 8.4 8.4 8.4-3.8 8.4-8.4-3.8-8.4-8.4-8.4zm0 1.2c4 0 7.2 3.2 7.2 7.2s3.2 7.2-7.2 7.2S4.8 16 4.8 12 8 4.8 12 4.8zm0 1.2c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 1.2c2.6 0 4.8 2.2 4.8 4.8s-2.2 4.8-4.8 4.8S7.2 14.6 7.2 12 9.4 7.2 12 7.2z"
+              />
+            </svg>
+            <span>Apple</span>
+            <!-- Coming Soon Tooltip -->
+            <div
+              class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-solar-dark text-solar-orange text-xs font-medium rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-50"
+            >
+              Coming Soon
+              <div
+                class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-solar-dark"
+              ></div>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
