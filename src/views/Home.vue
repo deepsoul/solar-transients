@@ -70,39 +70,10 @@
       </div>
     </section>
 
-    <!-- Newsletter CTA Section -->
-    <section class="py-16 bg-solar-gray">
-      <div class="container mx-auto px-4 text-center">
-        <h2
-          class="text-3xl md:text-4xl font-display font-bold text-solar-light mb-4"
-        >
-          Stay Connected
-        </h2>
-        <p class="text-solar-light/70 mb-8 max-w-2xl mx-auto">
-          Get the latest updates on new releases, upcoming shows, and exclusive
-          content
-        </p>
-
-        <form @submit.prevent="handleNewsletterSignup" class="max-w-md mx-auto">
-          <div class="flex gap-2">
-            <input
-              v-model="email"
-              type="email"
-              placeholder="Enter your email"
-              required
-              class="flex-1 px-4 py-3 bg-solar-dark border border-solar-orange/30 rounded-md text-solar-light placeholder-solar-light/50 focus:outline-none focus:ring-2 focus:ring-solar-orange focus:border-transparent"
-              aria-label="Email address for newsletter"
-            />
-            <button
-              type="submit"
-              class="btn-primary px-6 py-3"
-              :disabled="isSubmitting"
-              aria-label="Subscribe to newsletter"
-            >
-              {{ isSubmitting ? '...' : 'Subscribe' }}
-            </button>
-          </div>
-        </form>
+    <!-- Audio Waves Animation -->
+    <section class="py-16 bg-solar-gray/30 overflow-hidden">
+      <div class="w-full">
+        <AudioWaves />
       </div>
     </section>
   </div>
@@ -111,34 +82,15 @@
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
 import {useMusicStore} from '@/stores/music';
-import {useSnackbar} from '@/stores/snackbar';
 import VisualLoop from '@/components/VisualLoop.vue';
 import ReleaseCard from '@/components/ReleaseCard.vue';
+import AudioWaves from '../components/AudioWaves.vue';
 
 const musicStore = useMusicStore();
-const email = ref('');
-const isSubmitting = ref(false);
 const featuredRelease = ref(musicStore.featuredRelease);
-const {success, error: showError} = useSnackbar();
 
 onMounted(() => {
   // Set page title and meta
   document.title = 'SOLAR TRANSIENTS - Electronic Music Artist';
 });
-
-async function handleNewsletterSignup() {
-  isSubmitting.value = true;
-  try {
-    // Here you would integrate with your email service
-    console.log('Newsletter signup:', email.value);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    email.value = '';
-    success('Newsletter', 'Thank you for subscribing!');
-  } catch (error) {
-    console.error('Newsletter signup error:', error);
-    showError('Newsletter', 'Something went wrong. Please try again.');
-  } finally {
-    isSubmitting.value = false;
-  }
-}
 </script>

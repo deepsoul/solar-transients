@@ -13,7 +13,7 @@ export const useMusicStore = defineStore('music', () => {
         'https://open.spotify.com/intl-de/album/2t6qH19ZRcmAlXUz2km3Jc?si=_0XkTeLTTDyO0Z81Tn57rg',
       appleUrl:
         'https://music.apple.com/us/song/why-not-future-bobby-trumpet-remix-80ies-oldschool-version/1846371166',
-      tidalUrl: 'https://tidal.com/browse/album/12345678',
+      tidalUrl: 'https://tidal.com/album/467134096/u',
       previewUrl: '/audio/gentle-noise.mp3',
       description:
         'An ethereal journey through cosmic soundscapes, blending ambient textures with electronic rhythms.',
