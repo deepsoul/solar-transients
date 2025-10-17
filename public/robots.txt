@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://solar-transients.vercel.app/sitemap.xml
+
+# Disallow certain paths
+Disallow: /api/
+Disallow: /_nuxt/
+Disallow: /admin/
+
+# Crawl delay
+Crawl-delay: 1

@@ -4,6 +4,7 @@ import Music from '@/views/Music.vue';
 import About from '@/views/About.vue';
 import Contact from '@/views/Contact.vue';
 import Remix from '@/views/Remix.vue';
+import {analytics} from '@/services/analytics';
 
 const routes = [
   {
@@ -56,6 +57,16 @@ const routes = [
         'Create your own loops and beats with interactive circles in the Remix Lab.',
     },
   },
+  {
+    path: '/privacy',
+    name: 'Privacy',
+    component: () => import('@/views/Privacy.vue'),
+    meta: {
+      title: 'Privacy Policy - SOLAR TRANSIENTS',
+      description:
+        'Learn about how SOLAR TRANSIENTS collects, uses, and protects your personal data.',
+    },
+  },
 ];
 
 const router = createRouter({
@@ -99,6 +110,9 @@ router.afterEach((to) => {
       (to.meta.description as string) || '',
     );
   }
+
+  // Track page view with Google Analytics
+  analytics.trackPageView(to.path, to.meta.title as string);
 });
 
 export default router;

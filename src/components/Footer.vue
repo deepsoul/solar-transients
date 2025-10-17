@@ -91,11 +91,32 @@
         </div>
       </div>
 
-      <!-- Copyright -->
+      <!-- Copyright & Legal -->
       <div class="mt-8 pt-4 border-t border-solar-dark text-center">
-        <p class="text-solar-light/60 text-sm">
-          © {{ currentYear }} SOLAR TRANSIENTS. All rights reserved.
-        </p>
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4"
+        >
+          <p class="text-solar-light/60 text-sm">
+            © {{ currentYear }} SOLAR TRANSIENTS. All rights reserved.
+          </p>
+          <div class="flex items-center gap-4">
+            <button
+              @click="props.onOpenCookieDialog"
+              class="text-solar-light/60 hover:text-solar-orange transition-colors text-sm underline"
+              aria-label="Open cookie settings"
+            >
+              Cookie Settings
+            </button>
+            <a
+              href="/privacy"
+              class="text-solar-light/60 hover:text-solar-orange transition-colors text-sm underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Privacy Policy
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
@@ -118,6 +139,11 @@ const quickLinks = [
   {name: 'About', path: '/about'},
   {name: 'Contact', path: '/contact'},
 ];
+
+// Define props for cookie dialog function
+const props = defineProps<{
+  onOpenCookieDialog?: () => void;
+}>();
 
 async function handleNewsletterSignup() {
   isSubmitting.value = true;

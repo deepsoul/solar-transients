@@ -1,5 +1,13 @@
 <template>
   <div class="min-h-screen pt-20">
+    <!-- SEO Head -->
+    <SEOHead
+      title="Music - SOLAR TRANSIENTS | Electronic Music Releases & Albums"
+      description="Explore SOLAR TRANSIENTS' electronic music releases, albums, and tracks. Discover atmospheric soundscapes, ambient music, and electronic soundtracks with interactive music player."
+      keywords="electronic music releases, ambient albums, atmospheric music, electronic tracks, music player, soundscapes, ambient soundtracks, electronic music artist"
+      canonical="https://solar-transients.vercel.app/music"
+    />
+
     <!-- Hero Section -->
     <section class="py-16 bg-gradient-to-b from-solar-dark to-solar-gray">
       <div class="container mx-auto px-4 text-center">
@@ -137,6 +145,7 @@
 import {ref, computed, onMounted} from 'vue';
 import {useMusicStore} from '@/stores/music';
 import ReleaseCard from '@/components/ReleaseCard.vue';
+import SEOHead from '@/components/SEOHead.vue';
 
 const musicStore = useMusicStore();
 const selectedTags = ref<string[]>([]);

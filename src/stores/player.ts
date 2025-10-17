@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia';
 import {ref, computed, watch} from 'vue';
 import type {Track} from '@/types';
+import {analytics} from '@/services/analytics';
 
 export const usePlayerStore = defineStore('player', () => {
   const currentTrack = ref<Track | null>(null);
@@ -79,6 +80,14 @@ export const usePlayerStore = defineStore('player', () => {
         audioElement.value.load();
       }
     }
+
+    // Track music selection
+    analytics.trackEvent('music_select', {
+      track_name: track.title,
+      artist: track.artist,
+      event_category: 'Music Player',
+      event_label: `${track.artist} - ${track.title}`,
+    });
   }
 
   function play() {
@@ -87,6 +96,14 @@ export const usePlayerStore = defineStore('player', () => {
         .play()
         .then(() => {
           isPlaying.value = true;
+
+          // Track music play
+          if (currentTrack.value) {
+            analytics.trackMusicPlay(
+              currentTrack.value.title,
+              currentTrack.value.artist,
+            );
+          }
         })
         .catch((error) => {
           console.error('Error playing audio:', error);
