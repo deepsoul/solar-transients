@@ -4,6 +4,7 @@ import Music from '@/views/Music.vue';
 import About from '@/views/About.vue';
 import Contact from '@/views/Contact.vue';
 import Remix from '@/views/Remix.vue';
+import {analytics} from '@/services/analytics';
 
 const routes = [
   {
@@ -99,6 +100,9 @@ router.afterEach((to) => {
       (to.meta.description as string) || '',
     );
   }
+
+  // Track page view with Google Analytics
+  analytics.trackPageView(to.path, to.meta.title as string);
 });
 
 export default router;

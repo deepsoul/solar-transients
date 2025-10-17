@@ -678,6 +678,7 @@ import {ref, computed, onMounted, onUnmounted, watch} from 'vue';
 import {useSnackbar} from '@/stores/snackbar';
 import SnackbarContainer from '@/components/SnackbarContainer.vue';
 import SEOHead from '@/components/SEOHead.vue';
+import {analytics} from '@/services/analytics';
 
 // Canvas setup
 const canvasRef = ref<SVGElement>();
@@ -1202,6 +1203,15 @@ const addTrack = async (event: MouseEvent) => {
 
   tracks.value.push(track);
   selectedTrack.value = track;
+  
+  // Track track creation
+  analytics.trackEvent('remix_track_add', {
+    track_count: tracks.value.length,
+    sound_type: track.soundType,
+    event_category: 'Remix Lab',
+    event_label: `Added ${track.soundType} track`
+  });
+  
   success(
     'Spur hinzugefügt',
     `Neue Spur mit ${
@@ -1747,6 +1757,9 @@ const downloadMix = async () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
+    // Track download
+    analytics.trackDownload(downloadFormat.value, filename);
+    
     success(
       'Download abgeschlossen',
       `${filename} wurde erfolgreich heruntergeladen`,
