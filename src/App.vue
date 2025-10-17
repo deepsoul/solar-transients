@@ -37,7 +37,7 @@ const openCookieDialog = () => {
 // Listen for cookie settings events from privacy page
 onMounted(() => {
   window.addEventListener('openCookieSettings', openCookieDialog);
-  
+
   // Initialize analytics immediately for testing purposes
   analytics.initialize();
 });
