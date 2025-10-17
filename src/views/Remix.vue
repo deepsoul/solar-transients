@@ -662,70 +662,6 @@
   </div>
 </template>
 
-<style scoped>
-/* Mobile-optimized sliders */
-.slider {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-.slider::-webkit-slider-track {
-  background: #374151;
-  height: 8px;
-  border-radius: 4px;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  background: #ff6b35;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid #1f2937;
-}
-
-.slider::-moz-range-track {
-  background: #374151;
-  height: 8px;
-  border-radius: 4px;
-  border: none;
-}
-
-.slider::-moz-range-thumb {
-  background: #ff6b35;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid #1f2937;
-}
-
-/* Touch-friendly interactions */
-.touch-manipulation {
-  touch-action: manipulation;
-}
-
-/* Mobile-specific adjustments */
-@media (max-width: 640px) {
-  .btn-primary,
-  .btn-secondary {
-    min-height: 44px; /* iOS recommended touch target size */
-  }
-
-  input[type='range'] {
-    min-height: 44px;
-  }
-
-  select {
-    min-height: 44px;
-  }
-}
-</style>
-
 <script setup lang="ts">
 import {ref, computed, onMounted, onUnmounted, watch} from 'vue';
 import {useSnackbar} from '@/stores/snackbar';
@@ -1932,5 +1868,67 @@ input[type='range']::-moz-range-thumb {
   border-radius: 50%;
   cursor: pointer;
   border: none;
+}
+
+/* Mobile-optimized sliders */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-track {
+  background: #374151;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #ff6b35;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #1f2937;
+}
+
+.slider::-moz-range-track {
+  background: #374151;
+  height: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.slider::-moz-range-thumb {
+  background: #ff6b35;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #1f2937;
+}
+
+/* Touch-friendly interactions */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 640px) {
+  .btn-primary,
+  .btn-secondary {
+    min-height: 44px; /* iOS recommended touch target size */
+  }
+
+  input[type='range'] {
+    min-height: 44px;
+  }
+
+  select {
+    min-height: 44px;
+  }
 }
 </style>

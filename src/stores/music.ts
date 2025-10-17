@@ -46,7 +46,7 @@ export const useMusicStore = defineStore('music', () => {
       description:
         'A collection of introspective pieces exploring the ephemeral nature of consciousness.',
       tags: ['deep house', 'electronic', 'minimalistic'],
-      type: 'Single',
+      type: 'EP',
     },
   ]);
 

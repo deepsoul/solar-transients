@@ -12,6 +12,9 @@
         class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"
       ></div>
 
+      <!-- Music Visualizer -->
+      <MusicVisualizer :release-id="release.id" />
+
       <!-- Play Button Overlay -->
       <div
         class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -193,8 +196,10 @@
 </template>
 
 <script setup lang="ts">
+import {computed} from 'vue';
 import {usePlayerStore} from '@/stores/player';
 import type {Release, Track} from '@/types';
+import MusicVisualizer from './MusicVisualizer.vue';
 
 interface Props {
   release: Release;

@@ -13,6 +13,7 @@ export const usePlayerStore = defineStore('player', () => {
   const audioElement = ref<HTMLAudioElement | null>(null);
   const isLoading = ref(false);
   const hasError = ref(false);
+  const currentReleaseId = ref<string | null>(null);
 
   const hasNext = computed(
     () => currentIndex.value < playlist.value.length - 1,
@@ -66,6 +67,7 @@ export const usePlayerStore = defineStore('player', () => {
 
   function setTrack(track: Track) {
     currentTrack.value = track;
+    currentReleaseId.value = track.id; // Set the release ID for visualization
     isPlaying.value = false;
     currentTime.value = 0;
     hasError.value = false;
@@ -187,6 +189,7 @@ export const usePlayerStore = defineStore('player', () => {
     hasPrevious,
     isLoading,
     hasError,
+    currentReleaseId,
     setTrack,
     play,
     pause,
