@@ -19,8 +19,8 @@
         <p
           class="text-sm sm:text-lg text-solar-light/80 max-w-2xl mx-auto leading-relaxed"
         >
-          Erstelle deine eigenen Loops und Beats durch interaktive Kreise. Jeder
-          Kreis ist eine Spur - je kleiner, desto häufiger spielt sie.
+          Create your own loops and beats through interactive circles. Each
+          circle is a track - the smaller it is, the more frequently it plays.
         </p>
       </div>
 
@@ -129,7 +129,7 @@
           >
             <h3 class="text-lg font-semibold flex items-center">
               <span class="mr-2">🎵</span>
-              Rhythmus-Synchronisation
+              Rhythm Synchronization
             </h3>
             <div class="flex items-center space-x-2">
               <span class="text-sm text-solar-light/60">{{ bpm }} BPM</span>
@@ -178,13 +178,13 @@
 
               <!-- Sync Mode -->
               <div class="sm:col-span-2 lg:col-span-1">
-                <label class="block text-sm font-medium mb-2">Sync-Modus</label>
+                <label class="block text-sm font-medium mb-2">Sync Mode</label>
                 <select
                   v-model="syncMode"
                   class="w-full p-2 bg-solar-dark border border-solar-gray rounded text-solar-light text-sm"
                 >
-                  <option value="off">Aus</option>
-                  <option value="quantize">Quantisieren</option>
+                  <option value="off">Off</option>
+                  <option value="quantize">Quantize</option>
                   <option value="grid">Grid</option>
                 </select>
               </div>
@@ -210,10 +210,10 @@
 
             <div class="mt-3 text-xs text-solar-light/60 text-center">
               <span v-if="isSynced" class="text-solar-orange"
-                >✓ Alle Spuren sind synchronisiert</span
+                >✓ All tracks are synchronized</span
               >
               <span v-else
-                >Spuren werden auf musikalische Rhythmen quantisiert</span
+                >Tracks will be quantized to musical rhythms</span
               >
             </div>
 
@@ -222,10 +222,10 @@
               v-if="isSynced && tracks.length > 0"
               class="mt-2 text-xs text-solar-light/40 text-center"
             >
-              <div>BPM: {{ bpm }} | Modus: {{ syncMode }}</div>
+              <div>BPM: {{ bpm }} | Mode: {{ syncMode }}</div>
               <div>
-                Spuren: {{ tracks.length }} | Sync:
-                {{ isSynced ? 'Aktiv' : 'Inaktiv' }}
+                Tracks: {{ tracks.length }} | Sync:
+                {{ isSynced ? 'Active' : 'Inactive' }}
               </div>
             </div>
           </div>
@@ -324,16 +324,16 @@
         >
           <div class="space-y-1">
             <p class="hidden sm:block">
-              Klicke in den Kreis um eine Spur hinzuzufügen
+              Click in the circle to add a track
             </p>
             <p class="sm:hidden leading-tight">
-              Tippe in den Kreis um eine Spur hinzuzufügen
+              Tap in the circle to add a track
             </p>
             <p class="hidden sm:block text-xs">
-              Rechtsklick auf eine Spur zum Löschen
+              Right-click on a track to delete
             </p>
             <p class="sm:hidden text-xs leading-tight">
-              Lange drücken zum Löschen
+              Long press to delete
             </p>
           </div>
         </div>
@@ -342,14 +342,14 @@
       <!-- Track Info -->
       <div v-if="selectedTrack" class="mt-12 max-w-2xl mx-auto px-4">
         <div class="bg-solar-gray/50 rounded-lg p-4 sm:p-6">
-          <h3 class="text-lg font-semibold mb-4">Spur bearbeiten</h3>
+          <h3 class="text-lg font-semibold mb-4">Edit Track</h3>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
             <!-- Left Column: Basic Controls -->
             <div class="space-y-4">
               <div>
                 <label class="block text-sm font-medium mb-2"
-                  >Frequenz (je kleiner, desto häufiger)</label
+                  >Frequency (smaller = more frequent)</label
                 >
                 <input
                   v-model.number="selectedTrack.frequency"
@@ -365,7 +365,7 @@
               </div>
 
               <div>
-                <label class="block text-sm font-medium mb-2">Lautstärke</label>
+                <label class="block text-sm font-medium mb-2">Volume</label>
                 <input
                   v-model.number="selectedTrack.volume"
                   type="range"
@@ -380,7 +380,7 @@
               </div>
 
               <div>
-                <label class="block text-sm font-medium mb-2">Tonhöhe</label>
+                <label class="block text-sm font-medium mb-2">Pitch</label>
                 <input
                   v-model.number="selectedTrack.pitch"
                   type="range"
@@ -398,7 +398,7 @@
             <!-- Right Column: Sound Selection -->
             <div class="space-y-4">
               <div>
-                <label class="block text-sm font-medium mb-2">Sound-Typ</label>
+                <label class="block text-sm font-medium mb-2">Sound Type</label>
                 <div class="flex gap-2 mb-3">
                   <button
                     @click="selectedTrack.soundType = 'synthesized'"
@@ -428,14 +428,14 @@
               <!-- Sample Selection -->
               <div v-if="selectedTrack.soundType === 'sample'">
                 <label class="block text-sm font-medium mb-2"
-                  >Sample auswählen</label
+                  >Select Sample</label
                 >
                 <select
                   v-model="selectedTrack.samplePath"
                   @change="loadSampleForTrack"
                   class="w-full p-2 bg-solar-dark border border-solar-gray rounded text-solar-light"
                 >
-                  <option value="">Wähle ein Sample...</option>
+                  <option value="">Choose a sample...</option>
                   <optgroup
                     v-for="category in getSoundCategories()"
                     :key="category"
@@ -455,7 +455,7 @@
               <!-- File Upload -->
               <div>
                 <label class="block text-sm font-medium mb-2"
-                  >Eigenes Sample hochladen</label
+                  >Upload Custom Sample</label
                 >
                 <input
                   type="file"
@@ -464,7 +464,7 @@
                   class="w-full p-2 bg-solar-dark border border-solar-gray rounded text-solar-light file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-solar-orange file:text-white hover:file:bg-solar-orange/80"
                 />
                 <div class="text-xs text-solar-light/60 mt-1">
-                  Max. 2 Sekunden, alle Audio-Formate
+                  Max. 2 seconds, all audio formats
                 </div>
                 <div
                   v-if="
@@ -473,7 +473,7 @@
                   "
                   class="text-xs text-solar-orange mt-1"
                 >
-                  ✓ Sample geladen:
+                  ✓ Sample loaded:
                   {{
                     selectedTrack.samplePath
                       .split('_')
@@ -488,14 +488,14 @@
           <!-- Effects Section -->
           <div class="mt-6 pt-6 border-t border-solar-gray">
             <h4 class="text-lg font-semibold mb-4 text-solar-orange">
-              Effekte
+              Effects
             </h4>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <!-- Reverb -->
               <div class="space-y-3">
                 <div class="flex items-center justify-between">
-                  <label class="text-sm font-medium">Hall (Reverb)</label>
+                  <label class="text-sm font-medium">Reverb</label>
                   <input
                     v-model="selectedTrack.effects.reverb.enabled"
                     type="checkbox"
@@ -509,7 +509,7 @@
                 >
                   <div>
                     <label class="block text-xs text-solar-light/80 mb-1"
-                      >Intensität</label
+                      >Intensity</label
                     >
                     <input
                       v-model.number="selectedTrack.effects.reverb.amount"
@@ -528,7 +528,7 @@
 
                   <div>
                     <label class="block text-xs text-solar-light/80 mb-1"
-                      >Raumgröße</label
+                      >Room Size</label
                     >
                     <input
                       v-model.number="selectedTrack.effects.reverb.roomSize"
@@ -564,7 +564,7 @@
                 >
                   <div>
                     <label class="block text-xs text-solar-light/80 mb-1"
-                      >Zeit</label
+                      >Time</label
                     >
                     <input
                       v-model.number="selectedTrack.effects.delay.time"
@@ -920,13 +920,13 @@ const handleFileUpload = async (event: Event) => {
   // Check file size (max 2 seconds at 44.1kHz = ~176KB for 16-bit mono)
   const maxSize = 176000; // Approximate size for 2 seconds
   if (file.size > maxSize) {
-    alert('Datei ist zu groß! Maximal 2 Sekunden erlaubt.');
+    alert('File is too large! Maximum 2 seconds allowed.');
     return;
   }
 
   // Check file type
   if (!file.type.startsWith('audio/')) {
-    alert('Bitte wähle eine Audio-Datei aus!');
+    alert('Please select an audio file!');
     return;
   }
 
@@ -936,7 +936,7 @@ const handleFileUpload = async (event: Event) => {
 
     // Check duration
     if (audioBuffer.duration > 2) {
-      alert('Audio-Datei ist zu lang! Maximal 2 Sekunden erlaubt.');
+      alert('Audio file is too long! Maximum 2 seconds allowed.');
       return;
     }
 
@@ -961,16 +961,16 @@ const handleFileUpload = async (event: Event) => {
     }
 
     success(
-      'Sample hochgeladen',
-      `${newAsset.name} wurde erfolgreich hochgeladen und zugewiesen`,
+      'Sample uploaded',
+      `${newAsset.name} has been successfully uploaded and assigned`,
       3000,
     );
     console.log('File uploaded successfully:', newAsset.name);
   } catch (err) {
     console.error('Error uploading file:', err);
     error(
-      'Upload-Fehler',
-      'Fehler beim Hochladen der Datei! Bitte überprüfe das Format und die Größe.',
+      'Upload Error',
+      'Error uploading file! Please check the format and size.',
     );
   }
 };
@@ -1010,7 +1010,7 @@ const loadSampleForTrack = async () => {
     );
   } catch (error) {
     console.error('Error loading sample:', error);
-    alert('Fehler beim Laden des Samples!');
+    alert('Error loading sample!');
   }
 };
 
@@ -1053,7 +1053,7 @@ const calculateQuantizedFrequency = (track: Track) => {
 
 const syncAllTracks = () => {
   if (tracks.value.length === 0) {
-    error('Keine Spuren', 'Bitte erstelle zuerst mindestens eine Spur!');
+    error('No tracks', 'Please create at least one track first!');
     return;
   }
 
@@ -1063,8 +1063,8 @@ const syncAllTracks = () => {
 
   isSynced.value = true;
   success(
-    'Spuren synchronisiert',
-    `Alle ${tracks.value.length} Spuren wurden auf ${bpm.value} BPM synchronisiert`,
+    'Tracks synchronized',
+    `All ${tracks.value.length} tracks have been synchronized to ${bpm.value} BPM`,
     3000,
   );
   console.log('All tracks synced to BPM:', bpm.value);
@@ -1084,8 +1084,8 @@ const resetSync = () => {
   isSynced.value = false;
   syncMode.value = 'off';
   info(
-    'Sync zurückgesetzt',
-    'Spuren verwenden wieder ihre ursprünglichen Frequenzen',
+    'Sync reset',
+    'Tracks are using their original frequencies again',
   );
   console.log('Sync reset');
 };
@@ -1166,8 +1166,8 @@ const addTrack = async (event: MouseEvent) => {
     tracks.value.push(firstTrack);
     selectedTrack.value = firstTrack;
     success(
-      'Erste Spur erstellt',
-      'Die erste Spur wurde in der Mitte des Kreises platziert',
+      'First track created',
+      'The first track has been placed in the center of the circle',
       2000,
     );
     return;
@@ -1213,10 +1213,10 @@ const addTrack = async (event: MouseEvent) => {
   });
 
   success(
-    'Spur hinzugefügt',
-    `Neue Spur mit ${
-      track.soundType === 'synthesized' ? 'synthetisiertem' : 'Sample-'
-    }Sound erstellt`,
+    'Track added',
+    `New track with ${
+      track.soundType === 'synthesized' ? 'synthesized' : 'sample'
+    } sound created`,
     2000,
   );
 };
@@ -1228,7 +1228,7 @@ const removeTrack = (trackId: string) => {
     if (selectedTrack.value?.id === trackId) {
       selectedTrack.value = null;
     }
-    success('Spur entfernt', 'Die Spur wurde erfolgreich gelöscht', 2000);
+    success('Track removed', 'The track has been successfully deleted', 2000);
   }
 };
 
@@ -1267,8 +1267,8 @@ const clearAllTracks = () => {
   selectedTrack.value = null;
   markers.value = [];
   success(
-    'Alle Spuren gelöscht',
-    'Alle Spuren und Marker wurden entfernt',
+    'All tracks cleared',
+    'All tracks and markers have been removed',
     2000,
   );
 };
@@ -1278,7 +1278,7 @@ const togglePlayback = async () => {
     // Stop playback
     stopPlayback();
     isPlaying.value = false;
-    info('Playback gestoppt', 'Der Mix wurde pausiert', 2000);
+    info('Playback stopped', 'The mix has been paused', 2000);
     return;
   }
 
@@ -1292,19 +1292,19 @@ const togglePlayback = async () => {
     ) {
       isPlaying.value = true;
       startPlayback();
-      success('Playback gestartet', 'Dein Mix wird jetzt abgespielt', 2000);
+      success('Playback started', 'Your mix is now playing', 2000);
     } else {
       error(
-        'Audio-Fehler',
-        'AudioContext konnte nicht gestartet werden. Bitte tippe nochmal auf Play.',
+        'Audio Error',
+        'AudioContext could not be started. Please tap Play again.',
       );
       isPlaying.value = false;
     }
   } catch (error) {
     console.error('Playback error:', error);
     error(
-      'Audio-Fehler',
-      'Fehler beim Starten der Wiedergabe. Bitte versuche es erneut.',
+      'Audio Error',
+      'Error starting playback. Please try again.',
     );
     isPlaying.value = false;
   }
@@ -1572,7 +1572,7 @@ const downloadMix = async () => {
 
     // Check if there are any tracks
     if (tracks.value.length === 0) {
-      error('Keine Spuren', 'Bitte erstelle zuerst mindestens eine Spur!');
+      error('No tracks', 'Please create at least one track first!');
       return;
     }
 
@@ -1761,16 +1761,16 @@ const downloadMix = async () => {
     analytics.trackDownload(downloadFormat.value, filename);
 
     success(
-      'Download abgeschlossen',
-      `${filename} wurde erfolgreich heruntergeladen`,
+      'Download completed',
+      `${filename} has been successfully downloaded`,
       3000,
     );
     console.log('Download completed!');
   } catch (err) {
     console.error('Error recording audio:', err);
     error(
-      'Download-Fehler',
-      'Fehler beim Aufnehmen der Audio. Bitte versuche es erneut.',
+      'Download Error',
+      'Error recording audio. Please try again.',
     );
   } finally {
     isRecording.value = false;
