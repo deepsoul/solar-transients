@@ -44,8 +44,8 @@
           id="cookie-dialog-description"
           class="text-sm text-solar-light/80 mb-4"
         >
-          We use cookies to improve your experience and analyze our website.
-          You can change your settings at any time.
+          We use cookies to improve your experience and analyze our website. You
+          can change your settings at any time.
         </p>
 
         <!-- Cookie Categories -->
@@ -57,11 +57,14 @@
                 Essential Cookies
               </h4>
               <p class="text-xs text-solar-light/60">
-                These cookies are required for the basic functions of the website.
+                These cookies are required for the basic functions of the
+                website.
               </p>
             </div>
             <div class="flex items-center">
-              <span class="text-xs text-solar-light/60 mr-2">Always active</span>
+              <span class="text-xs text-solar-light/60 mr-2"
+                >Always active</span
+              >
               <div
                 class="w-8 h-4 bg-solar-orange rounded-full flex items-center justify-end px-1"
               >
@@ -100,40 +103,40 @@
 
         <!-- Privacy Policy Link -->
         <div class="mb-4">
-            <a
-              href="/privacy"
-              class="text-xs text-solar-orange hover:text-solar-orange/80 underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read Privacy Policy
-            </a>
+          <a
+            href="/privacy"
+            class="text-xs text-solar-orange hover:text-solar-orange/80 underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read Privacy Policy
+          </a>
         </div>
       </div>
 
       <!-- Actions -->
       <div class="px-6 py-4 bg-solar-gray/20 flex flex-col sm:flex-row gap-3">
-          <button
-            @click="declineCookies"
-            class="btn-secondary text-sm py-2 px-4 order-2 sm:order-1"
-            aria-label="Decline all cookies"
-          >
-            Decline
-          </button>
-          <button
-            @click="acceptSelected"
-            class="btn-primary text-sm py-2 px-4 order-1 sm:order-2"
-            aria-label="Accept selected cookies"
-          >
-            Save Selection
-          </button>
-          <button
-            @click="acceptAllCookies"
-            class="btn-secondary text-sm py-2 px-4 order-3"
-            aria-label="Accept all cookies"
-          >
-            Accept All
-          </button>
+        <button
+          @click="declineCookies"
+          class="btn-secondary text-sm py-2 px-4 order-2 sm:order-1"
+          aria-label="Decline all cookies"
+        >
+          Decline
+        </button>
+        <button
+          @click="acceptSelected"
+          class="btn-primary text-sm py-2 px-4 order-1 sm:order-2"
+          aria-label="Accept selected cookies"
+        >
+          Save Selection
+        </button>
+        <button
+          @click="acceptAllCookies"
+          class="btn-secondary text-sm py-2 px-4 order-3"
+          aria-label="Accept all cookies"
+        >
+          Accept All
+        </button>
       </div>
     </div>
   </div>
@@ -167,6 +170,17 @@ onMounted(() => {
   } else {
     loadPreferences();
   }
+});
+
+// Function to reopen cookie dialog (for footer link)
+const openCookieDialog = () => {
+  showDialog.value = true;
+  loadPreferences(); // Load current preferences
+};
+
+// Expose function for external use
+defineExpose({
+  openCookieDialog
 });
 
 // Toggle analytics

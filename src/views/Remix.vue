@@ -212,9 +212,7 @@
               <span v-if="isSynced" class="text-solar-orange"
                 >✓ All tracks are synchronized</span
               >
-              <span v-else
-                >Tracks will be quantized to musical rhythms</span
-              >
+              <span v-else>Tracks will be quantized to musical rhythms</span>
             </div>
 
             <!-- Debug Info -->
@@ -323,18 +321,14 @@
           class="text-center text-xs sm:text-sm text-solar-light/60 px-4 max-w-md"
         >
           <div class="space-y-1">
-            <p class="hidden sm:block">
-              Click in the circle to add a track
-            </p>
+            <p class="hidden sm:block">Click in the circle to add a track</p>
             <p class="sm:hidden leading-tight">
               Tap in the circle to add a track
             </p>
             <p class="hidden sm:block text-xs">
               Right-click on a track to delete
             </p>
-            <p class="sm:hidden text-xs leading-tight">
-              Long press to delete
-            </p>
+            <p class="sm:hidden text-xs leading-tight">Long press to delete</p>
           </div>
         </div>
       </div>
@@ -1083,10 +1077,7 @@ const applySyncChanges = () => {
 const resetSync = () => {
   isSynced.value = false;
   syncMode.value = 'off';
-  info(
-    'Sync reset',
-    'Tracks are using their original frequencies again',
-  );
+  info('Sync reset', 'Tracks are using their original frequencies again');
   console.log('Sync reset');
 };
 
@@ -1302,10 +1293,7 @@ const togglePlayback = async () => {
     }
   } catch (error) {
     console.error('Playback error:', error);
-    error(
-      'Audio Error',
-      'Error starting playback. Please try again.',
-    );
+    error('Audio Error', 'Error starting playback. Please try again.');
     isPlaying.value = false;
   }
 };
@@ -1768,10 +1756,7 @@ const downloadMix = async () => {
     console.log('Download completed!');
   } catch (err) {
     console.error('Error recording audio:', err);
-    error(
-      'Download Error',
-      'Error recording audio. Please try again.',
-    );
+    error('Download Error', 'Error recording audio. Please try again.');
   } finally {
     isRecording.value = false;
   }

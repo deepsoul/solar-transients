@@ -4,15 +4,15 @@
     <main class="relative">
       <router-view />
     </main>
-    <Footer />
+    <Footer :on-open-cookie-dialog="openCookieDialog" />
     <Player v-if="currentTrack" />
     <SnackbarContainer />
-    <CookieDialog />
+    <CookieDialog ref="cookieDialogRef" />
   </div>
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import {usePlayerStore} from '@/stores/player';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
@@ -23,4 +23,14 @@ import {analytics} from '@/services/analytics';
 
 const playerStore = usePlayerStore();
 const currentTrack = computed(() => playerStore.currentTrack);
+
+// Cookie dialog reference
+const cookieDialogRef = ref<InstanceType<typeof CookieDialog> | null>(null);
+
+// Function to open cookie dialog (passed to footer)
+const openCookieDialog = () => {
+  if (cookieDialogRef.value) {
+    cookieDialogRef.value.openCookieDialog();
+  }
+};
 </script>
