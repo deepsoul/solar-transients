@@ -26,21 +26,20 @@
               </h2>
               <div class="space-y-4 text-solar-light/80 leading-relaxed">
                 <p>
-                  SOLAR TRANSIENTS is an electronic music project that explores
-                  the intersection of technology and emotion, creating immersive
-                  soundscapes that transport listeners to otherworldly realms.
+                  SOLAR TRANSIENTS delivers Deep House and Tech House with a
+                  soulful, cosmic twist — deep grooves, warm textures, and
+                  rhythms that move both body and mind.
                 </p>
                 <p>
-                  Drawing inspiration from cosmic phenomena, space exploration,
-                  and the ever-changing nature of consciousness, each
-                  composition is a journey through time and space, blending
-                  ambient textures with electronic rhythms.
+                  Fusing analog warmth with digital precision, Solar Transients
+                  crafts hypnotic club cuts that balance emotion and energy.
+                  Each track flows like solar waves — shimmering, grooving, and
+                  evolving with subtle intensity.
                 </p>
                 <p>
-                  The project emerged from a fascination with the transient
-                  nature of solar activity and its profound impact on our planet
-                  and consciousness. Each release represents a snapshot of this
-                  cosmic dance, captured in sound.
+                  Inspired by space, consciousness, and the pulse of underground
+                  culture, Solar Transients turns the dancefloor into a journey
+                  through sound, light, and feeling.
                 </p>
               </div>
             </div>
