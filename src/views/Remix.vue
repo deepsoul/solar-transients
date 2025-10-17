@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-solar-dark text-solar-light">
     <!-- Header -->
-    <div class="container mx-auto px-6 py-8">
+    <div class="container mx-auto px-6 py-8 sm:mt-16">
       <div class="text-center mb-8 sm:mb-12 px-4">
         <h1
           class="text-3xl sm:text-4xl md:text-6xl font-display font-bold text-gradient mb-3 sm:mb-4"
@@ -24,6 +24,7 @@
         <div class="flex justify-center gap-2 sm:gap-4">
           <button
             @click="togglePlayback"
+            @touchstart="unlockIOSAudio"
             class="btn-primary flex items-center gap-2 text-sm sm:text-base px-3 sm:px-4 py-2"
             :class="{'bg-green-600 hover:bg-green-700': isPlaying}"
           >
@@ -87,6 +88,7 @@
           </select>
           <button
             @click="downloadMix"
+            @touchstart="unlockIOSAudio"
             class="btn-secondary flex items-center gap-2 text-sm px-3 py-2"
             :disabled="isRecording"
             :class="{'opacity-50 cursor-not-allowed': isRecording}"
@@ -627,6 +629,7 @@
 
               <button
                 @click="downloadMix"
+                @touchstart="unlockIOSAudio"
                 class="w-full btn-secondary flex items-center justify-center gap-2 py-3"
                 :disabled="isRecording"
                 :class="{'opacity-50 cursor-not-allowed': isRecording}"
@@ -885,9 +888,8 @@ const loadSoundAssets = async () => {
       try {
         const response = await fetch(asset.path);
         const arrayBuffer = await response.arrayBuffer();
-        const audioBuffer = await audioContext.value!.decodeAudioData(
-          arrayBuffer,
-        );
+        const audioBuffer =
+          await audioContext.value!.decodeAudioData(arrayBuffer);
         uploadedSamples.value.set(asset.path, audioBuffer);
       } catch (error) {
         console.warn(`Failed to load sound asset: ${asset.name}`, error);
@@ -1078,8 +1080,35 @@ const resetSync = () => {
   console.log('Sync reset');
 };
 
+// iOS audio unlock helper
+const unlockIOSAudio = async () => {
+  if (!audioContext.value) {
+    await initAudioContext();
+  }
+
+  // Create a silent buffer to unlock audio on iOS
+  if (audioContext.value && audioContext.value.state === 'suspended') {
+    try {
+      const buffer = audioContext.value.createBuffer(1, 1, 22050);
+      const source = audioContext.value.createBufferSource();
+      source.buffer = buffer;
+      source.connect(audioContext.value.destination);
+      source.start(0);
+
+      // Resume the context
+      await audioContext.value.resume();
+      console.log('iOS audio unlocked successfully');
+    } catch (error) {
+      console.warn('iOS audio unlock failed:', error);
+    }
+  }
+};
+
 // Methods
-const addTrack = (event: MouseEvent) => {
+const addTrack = async (event: MouseEvent) => {
+  // Unlock iOS audio on first interaction
+  await unlockIOSAudio();
+
   const rect = canvasRef.value?.getBoundingClientRect();
   if (!rect) return;
 
@@ -1192,7 +1221,10 @@ const selectTrack = (track: Track) => {
 const touchStartTime = ref(0);
 const touchStartTrack = ref<Track | null>(null);
 
-const handleTouchStart = (track: Track, event: TouchEvent) => {
+const handleTouchStart = async (track: Track, event: TouchEvent) => {
+  // Unlock iOS audio on first touch
+  await unlockIOSAudio();
+
   touchStartTime.value = Date.now();
   touchStartTrack.value = track;
   // Don't prevent default to allow normal click behavior
@@ -1223,29 +1255,39 @@ const clearAllTracks = () => {
 };
 
 const togglePlayback = async () => {
-  isPlaying.value = !isPlaying.value;
-
   if (isPlaying.value) {
-    try {
-      await initAudioContext();
-      if (audioContext.value && audioContext.value.state === 'running') {
-        startPlayback();
-        success('Playback gestartet', 'Dein Mix wird jetzt abgespielt', 2000);
-      } else {
-        error(
-          'Audio-Fehler',
-          'AudioContext konnte nicht gestartet werden. Bitte versuche es erneut.',
-        );
-        isPlaying.value = false;
-      }
-    } catch (error) {
-      console.error('Playback error:', error);
-      error('Audio-Fehler', 'Fehler beim Starten der Wiedergabe');
+    // Stop playback
+    stopPlayback();
+    isPlaying.value = false;
+    info('Playback gestoppt', 'Der Mix wurde pausiert', 2000);
+    return;
+  }
+
+  // Start playback
+  try {
+    const audioReady = await initAudioContext();
+    if (
+      audioReady &&
+      audioContext.value &&
+      audioContext.value.state === 'running'
+    ) {
+      isPlaying.value = true;
+      startPlayback();
+      success('Playback gestartet', 'Dein Mix wird jetzt abgespielt', 2000);
+    } else {
+      error(
+        'Audio-Fehler',
+        'AudioContext konnte nicht gestartet werden. Bitte tippe nochmal auf Play.',
+      );
       isPlaying.value = false;
     }
-  } else {
-    stopPlayback();
-    info('Playback gestoppt', 'Der Mix wurde pausiert', 2000);
+  } catch (error) {
+    console.error('Playback error:', error);
+    error(
+      'Audio-Fehler',
+      'Fehler beim Starten der Wiedergabe. Bitte versuche es erneut.',
+    );
+    isPlaying.value = false;
   }
 };
 
@@ -1261,14 +1303,33 @@ const initAudioContext = async () => {
     }
   }
 
+  // iOS Safari requires user interaction to start audio
   if (audioContext.value.state === 'suspended') {
     try {
       await audioContext.value.resume();
       console.log('AudioContext resumed successfully');
     } catch (error) {
       console.error('Failed to resume AudioContext:', error);
+      // For iOS, we might need to try again after user interaction
+      return false;
     }
   }
+
+  // Additional iOS fix: create a silent buffer to unlock audio
+  if (audioContext.value.state === 'running') {
+    try {
+      const buffer = audioContext.value.createBuffer(1, 1, 22050);
+      const source = audioContext.value.createBufferSource();
+      source.buffer = buffer;
+      source.connect(audioContext.value.destination);
+      source.start(0);
+      console.log('iOS audio unlock successful');
+    } catch (error) {
+      console.warn('iOS audio unlock failed:', error);
+    }
+  }
+
+  return audioContext.value.state === 'running';
 };
 
 const startPlayback = () => {
