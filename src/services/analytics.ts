@@ -20,6 +20,10 @@ class AnalyticsService {
     if (consent) {
       const preferences = JSON.parse(consent);
       this.isEnabled = preferences.analytics || false;
+    } else {
+      // If no consent given yet, enable analytics for testing purposes
+      // This will be overridden when user makes a choice
+      this.isEnabled = true;
     }
   }
 
@@ -28,7 +32,15 @@ class AnalyticsService {
     if (this.isInitialized || !this.isEnabled) return;
 
     try {
-      // Load Google Analytics script
+      // Check if Google Analytics is already loaded (from index.html)
+      if (window.gtag) {
+        console.log('Google Analytics already loaded, enabling tracking');
+        this.isInitialized = true;
+        this.isEnabled = true;
+        return;
+      }
+
+      // Load Google Analytics script if not already present
       const script = document.createElement('script');
       script.async = true;
       script.src = 'https://www.googletagmanager.com/gtag/js?id=G-C3LDCQL11X';
