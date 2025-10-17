@@ -1,5 +1,13 @@
 <template>
   <div class="min-h-screen bg-solar-dark text-solar-light">
+    <!-- SEO Head -->
+    <SEOHead
+      title="Remix Lab - SOLAR TRANSIENTS | Create Music & Loops Online"
+      description="Create your own electronic music and loops in the SOLAR TRANSIENTS Remix Lab. Interactive music creation tool with synthesizers, samples, and effects. Download your mixes as WAV or MP3."
+      keywords="music creation, remix lab, electronic music maker, loop creator, music production, online music tool, synthesizer, music samples, download music, create beats"
+      canonical="https://solar-transients.vercel.app/remix"
+    />
+    
     <!-- Header -->
     <div class="container mx-auto px-6 py-8 sm:mt-16">
       <div class="text-center mb-8 sm:mb-12 px-4">
@@ -669,6 +677,7 @@
 import {ref, computed, onMounted, onUnmounted, watch} from 'vue';
 import {useSnackbar} from '@/stores/snackbar';
 import SnackbarContainer from '@/components/SnackbarContainer.vue';
+import SEOHead from '@/components/SEOHead.vue';
 
 // Canvas setup
 const canvasRef = ref<SVGElement>();

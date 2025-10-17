@@ -1,5 +1,13 @@
 <template>
   <div class="min-h-screen pt-20">
+    <!-- SEO Head -->
+    <SEOHead
+      title="About - SOLAR TRANSIENTS | Electronic Music Artist Biography"
+      description="Learn about SOLAR TRANSIENTS - Electronic music artist creating atmospheric soundscapes and immersive audio experiences. Discover the story behind the music and artistic vision."
+      keywords="electronic music artist, about solar transients, music biography, atmospheric soundscapes, electronic music story, ambient music artist"
+      canonical="https://solar-transients.vercel.app/about"
+    />
+    
     <!-- Hero Section -->
     <section class="py-16 bg-gradient-to-b from-solar-dark to-solar-gray">
       <div class="container mx-auto px-4 text-center">
@@ -322,6 +330,7 @@
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
 import {useSnackbar} from '@/stores/snackbar';
+import SEOHead from '@/components/SEOHead.vue';
 import {useSocialLinks} from '@/composables/useSocialLinks';
 
 // Dialog state

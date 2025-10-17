@@ -1,8 +1,18 @@
 <template>
   <div class="min-h-screen">
+    <!-- SEO Head -->
+    <SEOHead
+      title="SOLAR TRANSIENTS - Electronic Music Artist | Atmospheric Soundscapes"
+      description="Discover SOLAR TRANSIENTS - Electronic music artist creating atmospheric soundscapes, ambient soundtracks, and immersive audio experiences. Explore music, create remixes, and discover electronic soundscapes."
+      keywords="electronic music, ambient music, atmospheric soundscapes, electronic artist, music production, sound design, ambient soundtracks, electronic beats"
+      canonical="https://solar-transients.vercel.app/"
+    />
+    
     <!-- Hero Section -->
     <section
       class="relative h-screen flex items-center justify-center overflow-hidden"
+      role="banner"
+      aria-label="Hero section with main introduction"
     >
       <!-- Visual Loop Background -->
       <VisualLoop class="absolute inset-0" />
@@ -11,6 +21,8 @@
       <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <h1
           class="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6"
+          role="heading"
+          aria-level="1"
         >
           <span class="text-gradient">SOLAR TRANSIENTS</span>
         </h1>
@@ -21,10 +33,18 @@
           audio experiences
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <router-link to="/music" class="btn-primary">
+          <router-link 
+            to="/music" 
+            class="btn-primary"
+            aria-label="Explore SOLAR TRANSIENTS music collection"
+          >
             Explore Music
           </router-link>
-          <router-link to="/about" class="btn-secondary">
+          <router-link 
+            to="/about" 
+            class="btn-secondary"
+            aria-label="Learn more about SOLAR TRANSIENTS"
+          >
             Learn More
           </router-link>
         </div>
@@ -85,6 +105,7 @@ import {useMusicStore} from '@/stores/music';
 import VisualLoop from '@/components/VisualLoop.vue';
 import ReleaseCard from '@/components/ReleaseCard.vue';
 import AudioWaves from '../components/AudioWaves.vue';
+import SEOHead from '@/components/SEOHead.vue';
 
 const musicStore = useMusicStore();
 const featuredRelease = ref(musicStore.featuredRelease);
