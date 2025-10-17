@@ -180,7 +180,7 @@ const openCookieDialog = () => {
 
 // Expose function for external use
 defineExpose({
-  openCookieDialog
+  openCookieDialog,
 });
 
 // Toggle analytics

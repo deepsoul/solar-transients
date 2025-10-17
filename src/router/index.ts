@@ -57,6 +57,16 @@ const routes = [
         'Create your own loops and beats with interactive circles in the Remix Lab.',
     },
   },
+  {
+    path: '/privacy',
+    name: 'Privacy',
+    component: () => import('@/views/Privacy.vue'),
+    meta: {
+      title: 'Privacy Policy - SOLAR TRANSIENTS',
+      description:
+        'Learn about how SOLAR TRANSIENTS collects, uses, and protects your personal data.',
+    },
+  },
 ];
 
 const router = createRouter({

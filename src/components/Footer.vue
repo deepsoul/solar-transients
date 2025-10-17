@@ -93,7 +93,9 @@
 
       <!-- Copyright & Legal -->
       <div class="mt-8 pt-4 border-t border-solar-dark text-center">
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4"
+        >
           <p class="text-solar-light/60 text-sm">
             © {{ currentYear }} SOLAR TRANSIENTS. All rights reserved.
           </p>

@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue';
+import {computed, onMounted, onUnmounted, ref} from 'vue';
 import {usePlayerStore} from '@/stores/player';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
@@ -33,4 +33,13 @@ const openCookieDialog = () => {
     cookieDialogRef.value.openCookieDialog();
   }
 };
+
+// Listen for cookie settings events from privacy page
+onMounted(() => {
+  window.addEventListener('openCookieSettings', openCookieDialog);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('openCookieSettings', openCookieDialog);
+});
 </script>
