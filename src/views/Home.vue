@@ -7,7 +7,7 @@
       keywords="electronic music, ambient music, atmospheric soundscapes, electronic artist, music production, sound design, ambient soundtracks, electronic beats"
       canonical="https://solar-transients.vercel.app/"
     />
-    
+
     <!-- Hero Section -->
     <section
       class="relative h-screen flex items-center justify-center overflow-hidden"
@@ -33,15 +33,15 @@
           audio experiences
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <router-link 
-            to="/music" 
+          <router-link
+            to="/music"
             class="btn-primary"
             aria-label="Explore SOLAR TRANSIENTS music collection"
           >
             Explore Music
           </router-link>
-          <router-link 
-            to="/about" 
+          <router-link
+            to="/about"
             class="btn-secondary"
             aria-label="Learn more about SOLAR TRANSIENTS"
           >

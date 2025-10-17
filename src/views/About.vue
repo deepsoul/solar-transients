@@ -7,7 +7,7 @@
       keywords="electronic music artist, about solar transients, music biography, atmospheric soundscapes, electronic music story, ambient music artist"
       canonical="https://solar-transients.vercel.app/about"
     />
-    
+
     <!-- Hero Section -->
     <section class="py-16 bg-gradient-to-b from-solar-dark to-solar-gray">
       <div class="container mx-auto px-4 text-center">

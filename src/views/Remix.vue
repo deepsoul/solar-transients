@@ -7,9 +7,9 @@
       keywords="music creation, remix lab, electronic music maker, loop creator, music production, online music tool, synthesizer, music samples, download music, create beats"
       canonical="https://solar-transients.vercel.app/remix"
     />
-    
+
     <!-- Header -->
-    <div class="container mx-auto px-6 py-8 sm:mt-16">
+    <div class="container mx-auto px-6 py-8 mt-16">
       <div class="text-center mb-8 sm:mb-12 px-4">
         <h1
           class="text-3xl sm:text-4xl md:text-6xl font-display font-bold text-gradient mb-3 sm:mb-4"

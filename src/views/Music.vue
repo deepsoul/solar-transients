@@ -7,7 +7,7 @@
       keywords="electronic music releases, ambient albums, atmospheric music, electronic tracks, music player, soundscapes, ambient soundtracks, electronic music artist"
       canonical="https://solar-transients.vercel.app/music"
     />
-    
+
     <!-- Hero Section -->
     <section class="py-16 bg-gradient-to-b from-solar-dark to-solar-gray">
       <div class="container mx-auto px-4 text-center">

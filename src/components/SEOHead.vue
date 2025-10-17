@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue';
+import {onMounted, onUnmounted} from 'vue';
 
 interface SEOProps {
   title?: string;
@@ -18,17 +18,19 @@ interface SEOProps {
 
 const props = withDefaults(defineProps<SEOProps>(), {
   title: 'SOLAR TRANSIENTS - Electronic Music Artist | Atmospheric Soundscapes',
-  description: 'Electronic music artist creating atmospheric soundscapes, ambient soundtracks, and immersive audio experiences. Explore music, create remixes, and discover electronic soundscapes.',
-  keywords: 'electronic music, ambient music, atmospheric soundscapes, electronic artist, music production, sound design, ambient soundtracks, electronic beats',
-  canonical: 'https://solar-transients.vercel.app',
-  ogImage: 'https://solar-transients.vercel.app/og-image.jpg',
-  ogType: 'website'
+  description:
+    'Electronic music artist creating atmospheric soundscapes, ambient soundtracks, and immersive audio experiences. Explore music, create remixes, and discover electronic soundscapes.',
+  keywords:
+    'electronic music, ambient music, atmospheric soundscapes, electronic artist, music production, sound design, ambient soundtracks, electronic beats',
+  canonical: 'https://solar-transients.de',
+  ogImage: 'https://solar-transients.de/og-image.jpg',
+  ogType: 'website',
 });
 
 const updateMetaTag = (name: string, content: string, property = false) => {
   const attribute = property ? 'property' : 'name';
   let meta = document.querySelector(`meta[${attribute}="${name}"]`);
-  
+
   if (meta) {
     meta.setAttribute('content', content);
   } else {
@@ -45,7 +47,7 @@ const updateTitle = (title: string) => {
 
 const updateCanonical = (url: string) => {
   let canonical = document.querySelector('link[rel="canonical"]');
-  
+
   if (canonical) {
     canonical.setAttribute('href', url);
   } else {
@@ -59,7 +61,7 @@ const updateCanonical = (url: string) => {
 onMounted(() => {
   // Update title
   updateTitle(props.title);
-  
+
   // Update meta tags
   updateMetaTag('description', props.description);
   updateMetaTag('keywords', props.keywords);
@@ -70,16 +72,24 @@ onMounted(() => {
   updateMetaTag('twitter:title', props.title);
   updateMetaTag('twitter:description', props.description);
   updateMetaTag('twitter:image', props.ogImage);
-  
+
   // Update canonical URL
   updateCanonical(props.canonical);
 });
 
 onUnmounted(() => {
   // Reset to default values when component is destroyed
-  updateTitle('SOLAR TRANSIENTS - Electronic Music Artist | Atmospheric Soundscapes');
-  updateMetaTag('description', 'Electronic music artist creating atmospheric soundscapes, ambient soundtracks, and immersive audio experiences. Explore music, create remixes, and discover electronic soundscapes.');
-  updateMetaTag('keywords', 'electronic music, ambient music, atmospheric soundscapes, electronic artist, music production, sound design, ambient soundtracks, electronic beats');
-  updateCanonical('https://solar-transients.vercel.app');
+  updateTitle(
+    'SOLAR TRANSIENTS - Electronic Music Artist | Atmospheric Soundscapes',
+  );
+  updateMetaTag(
+    'description',
+    'Electronic music artist creating atmospheric soundscapes, ambient soundtracks, and immersive audio experiences. Explore music, create remixes, and discover electronic soundscapes.',
+  );
+  updateMetaTag(
+    'keywords',
+    'electronic music, ambient music, atmospheric soundscapes, electronic artist, music production, sound design, ambient soundtracks, electronic beats',
+  );
+  updateCanonical('https://solar-transients.de');
 });
 </script>
