@@ -86,7 +86,7 @@ export const usePlayerStore = defineStore('player', () => {
       track_name: track.title,
       artist: track.artist,
       event_category: 'Music Player',
-      event_label: `${track.artist} - ${track.title}`
+      event_label: `${track.artist} - ${track.title}`,
     });
   }
 
@@ -96,10 +96,13 @@ export const usePlayerStore = defineStore('player', () => {
         .play()
         .then(() => {
           isPlaying.value = true;
-          
+
           // Track music play
           if (currentTrack.value) {
-            analytics.trackMusicPlay(currentTrack.value.title, currentTrack.value.artist);
+            analytics.trackMusicPlay(
+              currentTrack.value.title,
+              currentTrack.value.artist,
+            );
           }
         })
         .catch((error) => {

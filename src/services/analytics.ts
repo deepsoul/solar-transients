@@ -45,7 +45,7 @@ class AnalyticsService {
       gtag('config', 'G-C3LDCQL11X', {
         anonymize_ip: true,
         cookie_flags: 'SameSite=None;Secure',
-        send_page_view: false // We'll send page views manually
+        send_page_view: false, // We'll send page views manually
       });
 
       this.isInitialized = true;
@@ -62,7 +62,7 @@ class AnalyticsService {
     try {
       window.gtag('config', 'G-C3LDCQL11X', {
         page_path: path,
-        page_title: title || document.title
+        page_title: title || document.title,
       });
     } catch (error) {
       console.error('Failed to track page view:', error);
@@ -86,7 +86,7 @@ class AnalyticsService {
       track_name: trackName,
       artist: artist,
       event_category: 'Music',
-      event_label: `${artist} - ${trackName}`
+      event_label: `${artist} - ${trackName}`,
     });
   }
 
@@ -96,7 +96,7 @@ class AnalyticsService {
       track_count: trackCount,
       duration: duration,
       event_category: 'Remix Lab',
-      event_label: `Created remix with ${trackCount} tracks`
+      event_label: `Created remix with ${trackCount} tracks`,
     });
   }
 
@@ -106,7 +106,7 @@ class AnalyticsService {
       file_type: fileType,
       file_name: fileName,
       event_category: 'Download',
-      event_label: `${fileType} download`
+      event_label: `${fileType} download`,
     });
   }
 
@@ -116,7 +116,7 @@ class AnalyticsService {
       button_name: buttonName,
       location: location,
       event_category: 'UI Interaction',
-      event_label: `${buttonName} clicked in ${location}`
+      event_label: `${buttonName} clicked in ${location}`,
     });
   }
 
@@ -135,6 +135,16 @@ class AnalyticsService {
   // Check if analytics is currently enabled
   public isAnalyticsEnabled(): boolean {
     return this.isEnabled && this.isInitialized;
+  }
+
+  // Static method to check analytics consent from localStorage
+  public static isAnalyticsConsentGiven(): boolean {
+    const consent = localStorage.getItem('cookie-consent');
+    if (consent) {
+      const preferences = JSON.parse(consent);
+      return preferences.analytics || false;
+    }
+    return false;
   }
 }
 

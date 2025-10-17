@@ -1203,15 +1203,15 @@ const addTrack = async (event: MouseEvent) => {
 
   tracks.value.push(track);
   selectedTrack.value = track;
-  
+
   // Track track creation
   analytics.trackEvent('remix_track_add', {
     track_count: tracks.value.length,
     sound_type: track.soundType,
     event_category: 'Remix Lab',
-    event_label: `Added ${track.soundType} track`
+    event_label: `Added ${track.soundType} track`,
   });
-  
+
   success(
     'Spur hinzugefügt',
     `Neue Spur mit ${
@@ -1759,7 +1759,7 @@ const downloadMix = async () => {
 
     // Track download
     analytics.trackDownload(downloadFormat.value, filename);
-    
+
     success(
       'Download abgeschlossen',
       `${filename} wurde erfolgreich heruntergeladen`,

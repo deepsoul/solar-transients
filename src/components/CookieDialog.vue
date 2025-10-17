@@ -44,8 +44,9 @@
           id="cookie-dialog-description"
           class="text-sm text-solar-light/80 mb-4"
         >
-          Wir verwenden Cookies, um deine Erfahrung zu verbessern und unsere Website zu analysieren. 
-          Du kannst deine Einstellungen jederzeit ändern.
+          Wir verwenden Cookies, um deine Erfahrung zu verbessern und unsere
+          Website zu analysieren. Du kannst deine Einstellungen jederzeit
+          ändern.
         </p>
 
         <!-- Cookie Categories -->
@@ -57,12 +58,15 @@
                 Notwendige Cookies
               </h4>
               <p class="text-xs text-solar-light/60">
-                Diese Cookies sind für die Grundfunktionen der Website erforderlich.
+                Diese Cookies sind für die Grundfunktionen der Website
+                erforderlich.
               </p>
             </div>
             <div class="flex items-center">
               <span class="text-xs text-solar-light/60 mr-2">Immer aktiv</span>
-              <div class="w-8 h-4 bg-solar-orange rounded-full flex items-center justify-end px-1">
+              <div
+                class="w-8 h-4 bg-solar-orange rounded-full flex items-center justify-end px-1"
+              >
                 <div class="w-3 h-3 bg-white rounded-full"></div>
               </div>
             </div>
@@ -75,7 +79,8 @@
                 Analytics Cookies
               </h4>
               <p class="text-xs text-solar-light/60">
-                Helfen uns zu verstehen, wie Besucher mit der Website interagieren.
+                Helfen uns zu verstehen, wie Besucher mit der Website
+                interagieren.
               </p>
             </div>
             <div class="flex items-center">
@@ -85,7 +90,7 @@
                   'w-8 h-4 rounded-full flex items-center transition-colors',
                   analyticsEnabled
                     ? 'bg-solar-orange justify-end'
-                    : 'bg-solar-gray justify-start'
+                    : 'bg-solar-gray justify-start',
                 ]"
                 :aria-pressed="analyticsEnabled"
                 aria-label="Analytics Cookies aktivieren/deaktivieren"
@@ -138,7 +143,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import {ref, onMounted} from 'vue';
 
 // Cookie consent state
 const showDialog = ref(false);
@@ -177,13 +182,13 @@ const acceptAllCookies = () => {
   const preferences = {
     essential: true,
     analytics: true,
-    timestamp: Date.now()
+    timestamp: Date.now(),
   };
-  
+
   localStorage.setItem('cookie-consent', JSON.stringify(preferences));
   analyticsEnabled.value = true;
   showDialog.value = false;
-  
+
   // Initialize Google Analytics
   initializeGoogleAnalytics();
 };
@@ -193,12 +198,12 @@ const acceptSelected = () => {
   const preferences = {
     essential: true,
     analytics: analyticsEnabled.value,
-    timestamp: Date.now()
+    timestamp: Date.now(),
   };
-  
+
   localStorage.setItem('cookie-consent', JSON.stringify(preferences));
   showDialog.value = false;
-  
+
   // Initialize Google Analytics if enabled
   if (analyticsEnabled.value) {
     initializeGoogleAnalytics();
@@ -210,9 +215,9 @@ const declineCookies = () => {
   const preferences = {
     essential: true,
     analytics: false,
-    timestamp: Date.now()
+    timestamp: Date.now(),
   };
-  
+
   localStorage.setItem('cookie-consent', JSON.stringify(preferences));
   analyticsEnabled.value = false;
   showDialog.value = false;
@@ -221,20 +226,11 @@ const declineCookies = () => {
 // Initialize Google Analytics
 const initializeGoogleAnalytics = () => {
   // Import and enable analytics service
-  import('@/services/analytics').then(({ analytics }) => {
+  import('@/services/analytics').then(({analytics}) => {
     analytics.enable();
   });
 };
 
-// Check if analytics is enabled
-export const isAnalyticsEnabled = () => {
-  const consent = localStorage.getItem('cookie-consent');
-  if (consent) {
-    const preferences = JSON.parse(consent);
-    return preferences.analytics || false;
-  }
-  return false;
-};
 </script>
 
 <style scoped>
