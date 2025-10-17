@@ -87,6 +87,7 @@ const isMobileMenuOpen = ref(false);
 const navigationItems = [
   {name: 'Home', path: '/', ariaLabel: 'Go to home page'},
   {name: 'Music', path: '/music', ariaLabel: 'View music releases'},
+  {name: 'Remix', path: '/remix', ariaLabel: 'Create music in the Remix Lab'},
   {name: 'About', path: '/about', ariaLabel: 'Learn about SOLAR TRANSIENTS'},
   {name: 'Contact', path: '/contact', ariaLabel: 'Get in touch'},
 ];

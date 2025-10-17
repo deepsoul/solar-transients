@@ -3,6 +3,7 @@ import Home from '@/views/Home.vue';
 import Music from '@/views/Music.vue';
 import About from '@/views/About.vue';
 import Contact from '@/views/Contact.vue';
+import Remix from '@/views/Remix.vue';
 
 const routes = [
   {
@@ -43,6 +44,16 @@ const routes = [
       title: 'Contact - SOLAR TRANSIENTS',
       description:
         'Get in touch with SOLAR TRANSIENTS for bookings and collaborations.',
+    },
+  },
+  {
+    path: '/remix',
+    name: 'Remix',
+    component: Remix,
+    meta: {
+      title: 'Remix Lab - SOLAR TRANSIENTS',
+      description:
+        'Create your own loops and beats with interactive circles in the Remix Lab.',
     },
   },
 ];

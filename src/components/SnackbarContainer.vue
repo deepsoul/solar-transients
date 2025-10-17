@@ -7,7 +7,7 @@
       :type="message.type"
       :title="message.title"
       :message="message.message"
-      :duration="0"
+      :duration="message.duration || 5000"
       @close="remove(message.id)"
     />
   </div>
