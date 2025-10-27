@@ -65,12 +65,12 @@
                       class="w-64 h-64 bg-solar-orange/30 rounded-full mx-auto mb-4 flex items-center justify-center"
                     >
                       <img
-                        src="/images/artist-photo.jpeg"
+                        src="/images/Solar_Transients_Profile.jpg"
                         alt="Artist Photo"
                         class="w-full h-full object-cover"
                       />
                     </div>
-                    <p class="text-solar-light/60 text-sm">Artist Photo</p>
+                    <p class="text-solar-light/60 text-sm">Solar Transients</p>
                   </div>
                 </div>
               </div>
