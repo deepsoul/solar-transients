@@ -44,3 +44,12 @@ export interface PressKit {
   socialLinks: SocialLink[];
   downloadUrl: string;
 }
+
+export interface Video {
+  id: string;
+  title: string;
+  date: string;
+  youtubeId: string;
+  description: string;
+  tags: string[];
+}

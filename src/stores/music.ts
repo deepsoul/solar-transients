@@ -48,6 +48,19 @@ export const useMusicStore = defineStore('music', () => {
       tags: ['deep house', 'electronic', 'minimalistic'],
       type: 'EP',
     },
+    {
+      id: '4',
+      title: 'Establishing the Depth',
+      date: '2025-11-10',
+      coverUrl: '/images/establishing-the-depth.jpg',
+      spotifyUrl: '',
+      appleUrl: '',
+      tidalUrl: '',
+      previewUrl: '/audio/establishing-the-depth.mp3',
+      description: 'Real deep house vibes, soulful and atmospheric.',
+      tags: ['deep house', 'soulful', 'atmospheric'],
+      type: 'Single',
+    },
   ]);
 
   const featuredRelease = ref<Release | null>(releases.value[0]);
