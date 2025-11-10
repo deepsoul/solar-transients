@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://solar-transients.vercel.app/sitemap.xml
+Sitemap: https://solar-transients.de/sitemap.xml
 
 # Disallow certain paths
 Disallow: /api/

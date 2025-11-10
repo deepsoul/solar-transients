@@ -5,7 +5,7 @@
       title="SOLAR TRANSIENTS - Electronic Music Artist | Atmospheric Soundscapes"
       description="Discover SOLAR TRANSIENTS - Electronic music artist creating atmospheric soundscapes, ambient soundtracks, and immersive audio experiences. Explore music, create remixes, and discover electronic soundscapes."
       keywords="electronic music, ambient music, atmospheric soundscapes, electronic artist, music production, sound design, ambient soundtracks, electronic beats"
-      canonical="https://solar-transients.vercel.app/"
+      canonical="https://solar-transients.de/"
     />
 
     <!-- Hero Section -->

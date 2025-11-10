@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import Home from '@/views/Home.vue';
 import Music from '@/views/Music.vue';
+import Videos from '@/views/Videos.vue';
 import About from '@/views/About.vue';
 import Contact from '@/views/Contact.vue';
 import Remix from '@/views/Remix.vue';
@@ -25,6 +26,16 @@ const routes = [
       title: 'Music - SOLAR TRANSIENTS',
       description:
         'Explore the latest releases and music from SOLAR TRANSIENTS.',
+    },
+  },
+  {
+    path: '/videos',
+    name: 'Videos',
+    component: Videos,
+    meta: {
+      title: 'Videos - SOLAR TRANSIENTS',
+      description:
+        'Watch music videos, live performances, and more from SOLAR TRANSIENTS.',
     },
   },
   {

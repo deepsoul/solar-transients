@@ -1,11 +1,6 @@
 <template>
-  <div class="relative w-full h-full overflow-hidden">
-    <canvas
-      ref="canvasRef"
-      class="absolute inset-0 w-full h-full"
-      :width="canvasWidth"
-      :height="canvasHeight"
-    ></canvas>
+  <div class="absolute inset-0 w-full h-full overflow-hidden">
+    <canvas ref="canvasRef" class="absolute inset-0 w-full h-full"></canvas>
     <div
       class="absolute inset-0 bg-gradient-to-b from-transparent via-solar-dark/20 to-solar-dark/60"
     ></div>
@@ -39,18 +34,23 @@ function initCanvas() {
   if (!canvasRef.value) return;
 
   const canvas = canvasRef.value;
+  // Use getBoundingClientRect for accurate dimensions
   const rect = canvas.getBoundingClientRect();
-  canvasWidth.value = rect.width;
-  canvasHeight.value = rect.height;
+  const width = rect.width || window.innerWidth;
+  const height = rect.height || window.innerHeight;
 
-  // Set actual canvas size
-  canvas.width = rect.width * window.devicePixelRatio;
-  canvas.height = rect.height * window.devicePixelRatio;
+  canvasWidth.value = width;
+  canvasHeight.value = height;
+
+  // Set actual canvas size with device pixel ratio for crisp rendering
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = width * dpr;
+  canvas.height = height * dpr;
 
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  ctx.scale(dpr, dpr);
 
   // Initialize particles
   particles = [];
@@ -63,11 +63,12 @@ function createParticle() {
   const canvas = canvasRef.value;
   if (!canvas) return;
 
-  const rect = canvas.getBoundingClientRect();
+  const width = canvasWidth.value || window.innerWidth;
+  const height = canvasHeight.value || window.innerHeight;
 
   particles.push({
-    x: Math.random() * rect.width,
-    y: Math.random() * rect.height,
+    x: Math.random() * width,
+    y: Math.random() * height,
     vx: (Math.random() - 0.5) * 0.5,
     vy: (Math.random() - 0.5) * 0.5,
     size: Math.random() * 3 + 1,
@@ -82,7 +83,8 @@ function updateParticles() {
   const canvas = canvasRef.value;
   if (!canvas) return;
 
-  const rect = canvas.getBoundingClientRect();
+  const width = canvasWidth.value || window.innerWidth;
+  const height = canvasHeight.value || window.innerHeight;
 
   particles.forEach((particle, index) => {
     particle.x += particle.vx;
@@ -93,10 +95,10 @@ function updateParticles() {
     particle.opacity = Math.max(0, 1 - particle.life / particle.maxLife);
 
     // Wrap around edges
-    if (particle.x < 0) particle.x = rect.width;
-    if (particle.x > rect.width) particle.x = 0;
-    if (particle.y < 0) particle.y = rect.height;
-    if (particle.y > rect.height) particle.y = 0;
+    if (particle.x < 0) particle.x = width;
+    if (particle.x > width) particle.x = 0;
+    if (particle.y < 0) particle.y = height;
+    if (particle.y > height) particle.y = 0;
 
     // Remove dead particles
     if (particle.life >= particle.maxLife) {
@@ -161,12 +163,18 @@ function animate() {
 }
 
 function handleResize() {
-  initCanvas();
+  // Use requestAnimationFrame to ensure DOM is updated
+  requestAnimationFrame(() => {
+    initCanvas();
+  });
 }
 
 onMounted(() => {
-  initCanvas();
-  animate();
+  // Small delay to ensure DOM is fully rendered, especially on mobile
+  requestAnimationFrame(() => {
+    initCanvas();
+    animate();
+  });
   window.addEventListener('resize', handleResize);
 });
 

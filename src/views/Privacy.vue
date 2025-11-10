@@ -5,7 +5,7 @@
       title="Privacy Policy - SOLAR TRANSIENTS | Data Protection & Cookie Information"
       description="Learn about how SOLAR TRANSIENTS collects, uses, and protects your personal data. Comprehensive privacy policy covering cookies, analytics, and data protection rights."
       keywords="privacy policy, data protection, GDPR, cookies, personal data, SOLAR TRANSIENTS, privacy rights, data collection"
-      canonical="https://solar-transients.vercel.app/privacy"
+      canonical="https://solar-transients.de/privacy"
     />
 
     <!-- Hero Section -->
@@ -321,10 +321,10 @@
                 <p class="text-solar-light/80 mb-2">
                   <strong>Website:</strong>
                   <a
-                    href="https://solar-transients.vercel.app"
+                    href="https://solar-transients.de"
                     class="text-solar-orange hover:underline"
                   >
-                    solar-transients.vercel.app
+                    solar-transients.de
                   </a>
                 </p>
                 <p class="text-solar-light/80">
@@ -356,7 +356,7 @@ import {ref} from 'vue';
 import SEOHead from '@/components/SEOHead.vue';
 
 // Last updated date
-const lastUpdated = ref('December 2024');
+const lastUpdated = ref('November 2025');
 
 // Function to open cookie settings (will be passed from parent)
 const openCookieSettings = () => {

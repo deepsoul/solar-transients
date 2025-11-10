@@ -5,7 +5,7 @@
       title="Remix Lab - SOLAR TRANSIENTS | Create Music & Loops Online"
       description="Create your own electronic music and loops in the SOLAR TRANSIENTS Remix Lab. Interactive music creation tool with synthesizers, samples, and effects. Download your mixes as WAV or MP3."
       keywords="music creation, remix lab, electronic music maker, loop creator, music production, online music tool, synthesizer, music samples, download music, create beats"
-      canonical="https://solar-transients.vercel.app/remix"
+      canonical="https://solar-transients.de/remix"
     />
 
     <!-- Header -->
