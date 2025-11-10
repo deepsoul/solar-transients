@@ -324,7 +324,7 @@
                     href="https://solar-transients.de"
                     class="text-solar-orange hover:underline"
                   >
-                    solar-transients.vercel.app
+                    solar-transients.de
                   </a>
                 </p>
                 <p class="text-solar-light/80">
@@ -356,7 +356,7 @@ import {ref} from 'vue';
 import SEOHead from '@/components/SEOHead.vue';
 
 // Last updated date
-const lastUpdated = ref('December 2024');
+const lastUpdated = ref('November 2025');
 
 // Function to open cookie settings (will be passed from parent)
 const openCookieSettings = () => {

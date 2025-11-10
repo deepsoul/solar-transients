@@ -41,7 +41,10 @@
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="SOLAR TRANSIENTS" />
+    <meta
+      property="og:site_name"
+      content="Boris Horn | Electronic Music Artist | SOLAR TRANSIENTS"
+    />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
@@ -103,6 +106,23 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Google Analytics (for testing purposes) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-C3LDCQL11X"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-C3LDCQL11X', {
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure',
+      });
+    </script>
   </head>
   <body>
     <div id="app"></div>
