@@ -49,7 +49,7 @@ VITE_BUTTONDOWN_API_KEY=dein_buttondown_api_key
 VITE_CONTACT_API_URL=https://cms.borishorn.de/solar-transients-contact.php
 
 # Site Configuration
-VITE_SITE_URL=https://solar-transients.vercel.app
+VITE_SITE_URL=https://solar-transients.de
 VITE_SITE_NAME=SOLAR TRANSIENTS
 ```
 
@@ -142,7 +142,7 @@ Das Contact Form nutzt ein PHP-Script auf `cms.borishorn.de`:
 ```
 VITE_BUTTONDOWN_API_KEY=deb6e2f1-912d-4f8d-a536-3d350206eb79
 VITE_CONTACT_API_URL=https://cms.borishorn.de/solar-transients-contact.php
-VITE_SITE_URL=https://solar-transients.vercel.app
+VITE_SITE_URL=https://solar-transients.de
 VITE_SITE_NAME=SOLAR TRANSIENTS
 ```
 

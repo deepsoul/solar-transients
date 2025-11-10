@@ -1,7 +1,7 @@
 <?php
 // CORS-Header für Cross-Domain-Requests
 $allowedOrigins = [
-    'https://solar-transients.vercel.app',
+    'https://solar-transients.de',
     'https://solar-transients.de',
     'http://localhost:3000',
     'http://localhost:3001',

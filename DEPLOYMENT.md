@@ -13,7 +13,6 @@
    ```
 
 2. **Deploy to Vercel**
-
    - Go to [vercel.com](https://vercel.com)
    - Sign in with GitHub
    - Click "New Project"
@@ -42,14 +41,14 @@
 
 Set these in your deployment platform:
 
-| Variable                          | Description                 | Example                               |
-| --------------------------------- | --------------------------- | ------------------------------------- |
-| `VITE_SPOTIFY_CLIENT_ID`          | Spotify API client ID       | `abc123...`                           |
-| `VITE_EMAIL_SERVICE_URL`          | Email service endpoint      | `https://api.emailservice.com`        |
-| `VITE_EMAIL_SERVICE_API_KEY`      | Email service API key       | `key123...`                           |
-| `VITE_NEWSLETTER_SERVICE_URL`     | Newsletter service endpoint | `https://api.newsletter.com`          |
-| `VITE_NEWSLETTER_SERVICE_API_KEY` | Newsletter service API key  | `key456...`                           |
-| `VITE_SITE_URL`                   | Production site URL         | `https://solar-transients.vercel.app` |
+| Variable                          | Description                 | Example                        |
+| --------------------------------- | --------------------------- | ------------------------------ |
+| `VITE_SPOTIFY_CLIENT_ID`          | Spotify API client ID       | `abc123...`                    |
+| `VITE_EMAIL_SERVICE_URL`          | Email service endpoint      | `https://api.emailservice.com` |
+| `VITE_EMAIL_SERVICE_API_KEY`      | Email service API key       | `key123...`                    |
+| `VITE_NEWSLETTER_SERVICE_URL`     | Newsletter service endpoint | `https://api.newsletter.com`   |
+| `VITE_NEWSLETTER_SERVICE_API_KEY` | Newsletter service API key  | `key456...`                    |
+| `VITE_SITE_URL`                   | Production site URL         | `https://solar-transients.de`  |
 
 ## Custom Domain (Vercel)
 

@@ -5,7 +5,7 @@
       title="About - SOLAR TRANSIENTS | Electronic Music Artist Biography"
       description="Learn about SOLAR TRANSIENTS - Electronic music artist creating atmospheric soundscapes and immersive audio experiences. Discover the story behind the music and artistic vision."
       keywords="electronic music artist, about solar transients, music biography, atmospheric soundscapes, electronic music story, ambient music artist"
-      canonical="https://solar-transients.vercel.app/about"
+      canonical="https://solar-transients.de/about"
     />
 
     <!-- Hero Section -->

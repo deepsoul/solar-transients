@@ -5,7 +5,7 @@
       title="Music - SOLAR TRANSIENTS | Electronic Music Releases & Albums"
       description="Explore SOLAR TRANSIENTS' electronic music releases, albums, and tracks. Discover atmospheric soundscapes, ambient music, and electronic soundtracks with interactive music player."
       keywords="electronic music releases, ambient albums, atmospheric music, electronic tracks, music player, soundscapes, ambient soundtracks, electronic music artist"
-      canonical="https://solar-transients.vercel.app/music"
+      canonical="https://solar-transients.de/music"
     />
 
     <!-- Hero Section -->
