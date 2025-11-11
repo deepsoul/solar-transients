@@ -63,7 +63,7 @@ export const useMusicStore = defineStore('music', () => {
     },
   ]);
 
-  const featuredRelease = ref<Release | null>(releases.value[0]);
+  const featuredRelease = ref<Release | null>(releases.value[3]);
 
   function getReleaseById(id: string) {
     return releases.value.find((release) => release.id === id);

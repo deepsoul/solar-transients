@@ -10,8 +10,8 @@ export default {
         'solar-light': '#F5F5F5',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        display: ['Orbitron', 'system-ui', 'sans-serif'],
       },
       animation: {
         glow: 'glow 2s ease-in-out infinite alternate',
