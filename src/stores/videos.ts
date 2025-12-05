@@ -1,31 +1,33 @@
 import {defineStore} from 'pinia';
 import {ref} from 'vue';
 import type {Video} from '@/types';
-
+//https://youtu.be/XsNUGTun7tQ?si=i4U5BvgHUlVrTMEz
 export const useVideosStore = defineStore('videos', () => {
   const videos = ref<Video[]>([
     {
       id: '1',
-      title: 'Upbeat Discohouse',
+      title: 'Bobby Trumpet After Work',
       date: '2025-01-15',
-      youtubeId: 'zmtHFtDcVjk',
-      description: 'House Blend Vol 12.',
+      youtubeId: 'kbt_VJpDlXk',
+      description: 'a funky mix of Bobby Trumpet after work.',
       tags: ['disco', 'djmix', 'house'],
     },
     {
       id: '2',
-      title: 'Calm Energy',
+      title: 'House Arrest',
       date: '2025-10-01',
-      youtubeId: 'Xgpe5EXC6xU',
-      description: 'Chill house for a relaxed morning.',
+      youtubeId: 'UWdmz2TV4R0',
+      description:
+        'DJ Mix Series by Bobby Trumpet, Tracks curated by ‪@SolarTransients‬',
       tags: ['house', 'chill'],
     },
     {
       id: '3',
-      title: 'Elegant Deephouse',
+      title: 'Grrove Session Vol. 1',
       date: '2025-01-15',
-      youtubeId: 'iJkg8Kh1zPI',
-      description: 'Deep luxory.',
+      youtubeId: 'XsNUGTun7tQ?',
+      description:
+        'Vocal House - Classics and new tracks mixed by Bobby Trumpet.',
       tags: ['deep house', 'gentleman'],
     },
   ]);

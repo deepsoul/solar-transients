@@ -53,9 +53,11 @@ export const useMusicStore = defineStore('music', () => {
       title: 'Establishing the Depth',
       date: '2025-11-10',
       coverUrl: '/images/establishing-the-depth.jpg',
-      spotifyUrl: '',
-      appleUrl: '',
-      tidalUrl: '',
+      spotifyUrl:
+        'https://open.spotify.com/intl-de/track/3hm8HdboP10AJE2aEL98mu?si=70ba71b97d7b4ca4',
+      appleUrl:
+        'https://music.apple.com/de/album/establishing-the-depth-single/1853246881',
+      tidalUrl: 'https://tidal.com/artist/68384883/u',
       previewUrl: '/audio/establishing-the-depth.mp3',
       description: 'Real deep house vibes, soulful and atmospheric.',
       tags: ['deep house', 'soulful', 'atmospheric'],
